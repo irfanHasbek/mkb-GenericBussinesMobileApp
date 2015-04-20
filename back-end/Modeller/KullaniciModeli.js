@@ -12,7 +12,8 @@ var KullaniciModeli = new mongoose.Schema({
     gsm2 : String,
     resimLinki : String,
     hesapTipi : String,
-    aktif : Boolean
+    aktif : Boolean,
+    degistiren : String
 });
 
 module.exports = mongoose.model('kullanicilar', KullaniciModeli);

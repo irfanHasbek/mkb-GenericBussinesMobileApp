@@ -58,6 +58,8 @@ mongoose.connect(config.dbpath, function(err){
     assignRouter(app, './back-end/Routers/ViewRouter', '/html');
     //Kullanici crud operasyon
     createCrudRouter(app, './back-end/Modeller/KullaniciModeli', '/kullanici');
+    createCrudRouter(app, './back-end/Modeller/RolTanimiModeli', '/rol_tanimi');
+    createCrudRouter(app, './back-end/Modeller/GorevTanimiModeli', '/gorev_tanimi');
 
     app.get('/', function(req, res){
         res.render('giris'); 

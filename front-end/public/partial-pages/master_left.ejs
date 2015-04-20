@@ -21,6 +21,19 @@
                     <i class="fa fa-home"></i> <span>Anasayfa</span>
                 </a>
             </li>
+            <li class="treeview <%if(session.pageLabel == 'kullanicilar'){%>active<%}%>">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Kullanıcılar</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/html/rol_tanimi"><i class="fa fa-angle-double-right"></i> Rol Tanımi</a></li>
+                    <li><a href="/html/gorev_tanimi"><i class="fa fa-angle-double-right"></i> Görev Tanımi</a></li>
+                    <li><a href="/html/kullanici_tanimi"><i class="fa fa-angle-double-right"></i> Kullanıcı Tanımi</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i> Kullanıcı İzinleri</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

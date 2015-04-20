@@ -106,9 +106,9 @@ function reset () {
     });
 }
 function removeFromTable(tableClass,url,callback){
-    
     $("."+tableClass).on("click",".sil",function(){
-        var id=$(this).closest("td").attr("id");
+        var id=$(this).closest("tr").attr("id");
+        //console.log('id : ' + id);
         var tr=$("."+tableClass).find("tbody").find("tr[id="+id+"]");
         alertify.confirm("Silmek istediğinizden emin misiniz?",
             function(){

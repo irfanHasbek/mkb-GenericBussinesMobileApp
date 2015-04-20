@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%include ../partial-pages/css.ejs%>
+    </head>
+    <body class="skin-blue">
+       <%include ../partial-pages/master_head.ejs%>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+           <%include ../partial-pages/master_left.ejs%>
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">                
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1 style="font-size:22px;">
+                        Kullanıcı Tanımları Ekranı
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i> Anasayfa</a></li>
+                        <li class="active">Kullanıcı Tanımi</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <form id="formKullanici" action="/kullanici/ekle" method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <div class="box box-info">
+                                        <!-- form start -->
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <input name="firmaKodu" type="text" style="display:none;" value="<%=session.kullanici.firmaKodu%>">
+                                                            <input name="_id" id="inpId" type="text" style="display:none;" disabled>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group ">
+                                                                        <label>Adı</label>
+                                                                        <input id="inpIsim" name="isim" type="text" class="form-control" required placeholder="Ad Giriniz">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>Soyadı</label>
+                                                                        <input id="inpSoyisim" name="soyisim" type="text" class="form-control" required  placeholder="Soyad Giriniz">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>Rolü</label>
+                                                                        <select id="inpRol" name="rol" class="icon-menu btn-block btn-default" required style="height:35px;">
+                                                                            <option style="padding-left:0px;" selected disabled value="Rol Seçiniz">Rol Seçiniz</option>
+                                                                            <%for(var i = 0;i < roller.length; i++){%>
+                                                                                <option value="<%=roller[i].rol%>" ><%=roller[i].rol%></option>
+                                                                            <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="img-center-user">
+                                                                   <label></label>
+                                                                    <img src="../img/avatar5.png" class="img-responsive">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="form-group">
+                                                        <label>Görevi</label>
+                                                        <select id="inpGorev" name="gorev" class="icon-menu btn-block btn-default" required style="height:35px;">
+                                                            <option style="padding-left:0px;" selected disabled value="Görev Seçiniz">Görev Seçiniz</option>
+                                                            <%for(var i = 0;i < gorevler.length; i++){%>
+                                                                <option ><%=gorevler[i].gorev%></option>
+                                                            <%}%>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="form-group ">
+                                                        <label>GSM</label>
+                                                        <input id="inpGsm" name="gsm1" required type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask  placeholder="GSM Giriniz">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="form-group ">
+                                                        <label>Email</label>
+                                                        <input id="inpEmail" name="email" required type="email" class="form-control"  placeholder="Kullanıcı Adı Giriniz">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="form-group ">
+                                                        <label>Parola</label>
+                                                        <input id="inpSifre" required name="sifre" type="password" class="form-control"  placeholder="Parola Giriniz">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="form-group ">
+                                                        <label>Parola Tekrar</label>
+                                                        <input id="inpSifreTekrar" required type="password" class="form-control req"  placeholder="Parola Tekrar Giriniz">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="form-group ">
+                                                        <label>Aktif </label>
+                                                        <input id="inpGizliAktif" name="aktif" class="form-control" style="display:none;">
+                                                        <p>
+                                                            <input id="inpAktif" type="checkbox" class="form-control">
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <div style="text-align:center">
+                                                <button id="btnKullaniciKaydet" type="submit" class="btn btn-primary btn-flat">Kaydet</button>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.box -->
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Kullanıcı Listeleme</h3>
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body">
+                                        <table class="table table-bordered kullaniciTablosu">
+                                            <tr style="border-bottom:3px solid #3c8dbc;">
+                                                <th class="text-center" style="width: 40px">#</th>
+                                                <th>Adı Soyadı</th>
+                                                <th>Rolü</th>
+                                                <th>Görevi</th>
+                                                <th>GSM</th>
+                                                <th>E-posta - Kullanici adi</th>
+                                                <th class="text-center" style="width: 60px">Aktif</th>
+                                                <th class="text-center" style="width: 100px">Operasyon</th>
+                                            </tr>
+                                            <tbody>
+                                                <%for(var i = 0; i < kullanicilar.length; i++){%>
+                                                    <tr id="<%=kullanicilar[i]._id%>">
+                                                        <td class="text-center"><%=i+1%></td>
+                                                        <td><%=kullanicilar[i].isim%> <%=kullanicilar[i].soyisim%></td>
+                                                        <td><%=kullanicilar[i].rol%></td>
+                                                        <td><%=kullanicilar[i].gorev%></td>
+                                                        <td><%=kullanicilar[i].gsm1%></td>
+                                                        <td><%=kullanicilar[i].email%></td>
+                                                        <td class="text-center"><%if(kullanicilar[i].aktif == false){%><i style="color:#911E29;" class="fa fa-times"></i><%}else{%><i style="color:#0DA611;" class="fa fa-check"></i><%}%></td>
+                                                        <td>
+                                                            <button class="btn btn-info btn-sm btn-flat duzenle"><i class="fa fa-pencil"></i></button>
+                                                            <%if( kullanicilar[i].degistiren != 'Sistem' && kullanicilar[i]._id != session.kullanici._id){%>
+                                                                <button class="btn btn-danger btn-sm btn-flat sil"><i class="fa fa-trash-o"></i></button>
+                                                            <%}%>
+                                                        </td>
+                                                    </tr>
+                                                <%}%>
+                                            </tbody>
+                                        </table>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+                        </div>
+                    </div>
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+       <%include ../partial-pages/script.ejs%>
+       <script src="../js/utility-js/jquery.blockUI.js"></script>
+       <script src="../js/helper.js/Helper.js"></script>
+       <script src="../js/pages-js/kullanici_tanimi.js"></script>
+    </body>
+</html>
