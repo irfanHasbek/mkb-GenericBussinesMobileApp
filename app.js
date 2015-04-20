@@ -42,7 +42,7 @@ mongoose.connect(config.dbpath, function(err){
     app.use(bodyParser.json());
     
     app.use(function(req, res, next){
-        if(req.session.giris || req.originalUrl == '/hesap/giris'){
+        if(req.session.giris || req.originalUrl == '/hesap/giris' || req.originalUrl == '/onyukleme/yoneticiekle'){
             console.log('sessionCheck is true');
             next();
         }else{
@@ -50,6 +50,8 @@ mongoose.connect(config.dbpath, function(err){
             res.render('giris');
         }
     });
+    //Onyukleme 
+    assignRouter(app, './back-end/Routers/OnyuklemeRouter', '/onyukleme');
     //giris ve cikis
     assignRouter(app, './back-end/Routers/HesapRouter', '/hesap');
     //Html view router

@@ -5,11 +5,11 @@ function CRUD(model){
     router.get('/listele', function(req, res) {
         model.find({}, function(dbHatasi, listelenen) {
             if(dbHatasi) {
-                res.send(dbHatasi);
+                res.send({state : false, data : dbHatasi});
                 return;
             }
             else{
-                res.send(listelenen);
+                res.send({state : true, data : listelenen});
             }
         });
     });
@@ -17,11 +17,11 @@ function CRUD(model){
     router.post('/ekle', function(req, res){        
         new model(req.body).save(function(dbHatasi, eklenen) {
             if(dbHatasi) {
-                res.send(dbHatasi);
+                res.send({state : false, data : dbHatasi});
                 return;
             }
             else {
-                res.send(eklenen);
+                res.send({state : true, data : eklenen});
             }
         });
     });
@@ -29,11 +29,11 @@ function CRUD(model){
     router.get('/hepsinisil', function(req, res) {
         model.remove({}, function(dbHatasi) {
             if(dbHatasi) {
-                res.send(dbHatasi);
+                res.send({state : false, data : dbHatasi});
                 return;
             }
             else {
-                res.send({mesaj : "Tumu silindi."});
+                res.send({state : true, data : "Tumu silindi."});
             }
         });
     });
