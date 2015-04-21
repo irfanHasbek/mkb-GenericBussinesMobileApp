@@ -61,23 +61,34 @@ function HTMLRouter(){
     
     //Dokümanlar 
     
+    router.get('/dokuman_turu_ekle', function(req, res){
+        req.session.currentPage = '/html/dokuman_turu_ekle';
+        req.session.pageLabel = 'dokumanlar';
+        res.render('dokuman_turu_ekle', {layout : false, session : req.session});
+    });
     router.get('/dokuman_ekle', function(req, res){
         req.session.currentPage = '/html/dokuman_ekle';
         req.session.pageLabel = 'dokumanlar';
         res.render('dokuman_ekle', {layout : false, session : req.session});
     });
+    
     router.get('/dokuman_listele', function(req, res){
         req.session.currentPage = '/html/dokuman_listele';
         req.session.pageLabel = 'dokumanlar';
         res.render('dokuman_listele', {layout : false, session : req.session});
     });
     //Ürünler 
-    
+    router.get('/urun_grubu_ekle', function(req, res){
+        req.session.currentPage = '/html/urun_grubu_ekle';
+        req.session.pageLabel = 'urunler';
+        res.render('urun_grubu_ekle', {layout : false, session : req.session});
+    });
     router.get('/urun_ekle', function(req, res){
         req.session.currentPage = '/html/urun_ekle';
         req.session.pageLabel = 'urunler';
         res.render('urun_ekle', {layout : false, session : req.session});
     });
+    
     router.get('/urun_listele', function(req, res){
         req.session.currentPage = '/html/urun_listele';
         req.session.pageLabel = 'urunler';
