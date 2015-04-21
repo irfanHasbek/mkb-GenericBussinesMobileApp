@@ -59,6 +59,104 @@ function HTMLRouter(){
         });
     });
     
+    //Dokümanlar 
+    
+    router.get('/dokuman_ekle', function(req, res){
+        req.session.currentPage = '/html/dokuman_ekle';
+        req.session.pageLabel = 'dokumanlar';
+        res.render('dokuman_ekle', {layout : false, session : req.session});
+    });
+    router.get('/dokuman_listele', function(req, res){
+        req.session.currentPage = '/html/dokuman_listele';
+        req.session.pageLabel = 'dokumanlar';
+        res.render('dokuman_listele', {layout : false, session : req.session});
+    });
+    //Ürünler 
+    
+    router.get('/urun_ekle', function(req, res){
+        req.session.currentPage = '/html/urun_ekle';
+        req.session.pageLabel = 'urunler';
+        res.render('urun_ekle', {layout : false, session : req.session});
+    });
+    router.get('/urun_listele', function(req, res){
+        req.session.currentPage = '/html/urun_listele';
+        req.session.pageLabel = 'urunler';
+        res.render('urun_listele', {layout : false, session : req.session});
+    });
+    //Eğitim Takvimi 
+    
+    router.get('/egitim_takvimi_ekle', function(req, res){
+        req.session.currentPage = '/html/egitim_takvimi_ekle';
+        req.session.pageLabel = 'egitim_takvimi';
+        res.render('egitim_takvimi_ekle', {layout : false, session : req.session});
+    });
+    router.get('/egitim_takvimi_listele', function(req, res){
+        req.session.currentPage = '/html/egitim_takvimi_listele';
+        req.session.pageLabel = 'egitim_takvimi';
+        res.render('egitim_takvimi_listele', {layout : false, session : req.session});
+    });
+    
+    //Fiyat 
+    
+    router.get('/fiyat_ekle', function(req, res){
+        req.session.currentPage = '/html/fiyat_ekle';
+        req.session.pageLabel = 'fiyat';
+        res.render('fiyat_ekle', {layout : false, session : req.session});
+    });
+    router.get('/fiyat_listele', function(req, res){
+        req.session.currentPage = '/html/fiyat_listele';
+        req.session.pageLabel = 'fiyat';
+        res.render('fiyat_listele', {layout : false, session : req.session});
+    });
+    //Referans 
+    
+    router.get('/referans_ekle', function(req, res){
+        req.session.currentPage = '/html/referans_ekle';
+        req.session.pageLabel = 'referans';
+        res.render('referans_ekle', {layout : false, session : req.session});
+    });
+    router.get('/referans_listele', function(req, res){
+        req.session.currentPage = '/html/referans_listele';
+        req.session.pageLabel = 'referans';
+        res.render('referans_listele', {layout : false, session : req.session});
+    });
+    //Yapılmış Eğitim 
+    
+    router.get('/yapilmis_egitim_ekle', function(req, res){
+        req.session.currentPage = '/html/yapilmis_egitim_ekle';
+        req.session.pageLabel = 'yapilmis_egitim';
+        res.render('yapilmis_egitim_ekle', {layout : false, session : req.session});
+    });
+    router.get('/yapilmis_egitim_listele', function(req, res){
+        req.session.currentPage = '/html/yapilmis_egitim_listele';
+        req.session.pageLabel = 'yapilmis_egitim';
+        res.render('yapilmis_egitim_listele', {layout : false, session : req.session});
+    });
+    //Haberler 
+    
+    router.get('/haber_ekle', function(req, res){
+        req.session.currentPage = '/html/haber_ekle';
+        req.session.pageLabel = 'haberler';
+        res.render('haber_ekle', {layout : false, session : req.session});
+    });
+    router.get('/haber_listele', function(req, res){
+        req.session.currentPage = '/html/haber_listele';
+        req.session.pageLabel = 'haberler';
+        res.render('haber_listele', {layout : false, session : req.session});
+    });
+    //İletişim 
+    
+    router.get('/iletisim_ekle', function(req, res){
+        req.session.currentPage = '/html/iletisim_ekle';
+        req.session.pageLabel = 'iletisim';
+        res.render('iletisim_ekle', {layout : false, session : req.session});
+    });
+    router.get('/iletisim_listele', function(req, res){
+        req.session.currentPage = '/html/iletisim_listele';
+        req.session.pageLabel = 'iletisim';
+        res.render('iletisim_listele', {layout : false, session : req.session});
+    });
+    
     return router;
 }
 module.exports = HTMLRouter;

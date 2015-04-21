@@ -1005,34 +1005,34 @@ body > .header .logo .icon {
    All form elements including input, select, textarea etc.
 -----------------------------------------------------------------
 */
-.form-control {
+.form-control2 {
   -webkit-border-radius: 0px !important;
   -moz-border-radius: 0px !important;
   border-radius: 0px !important;
   box-shadow: none;
 }
-.form-control:focus {
+.form-control2:focus {
   border-color: #3c8dbc !important;
   box-shadow: none;
 }
 .form-group.has-success label {
   color: #00a65a;
 }
-.form-group.has-success .form-control {
+.form-group.has-success .form-control2 {
   border-color: #00a65a !important;
   box-shadow: none;
 }
 .form-group.has-warning label {
   color: #f39c12;
 }
-.form-group.has-warning .form-control {
+.form-group.has-warning .form-control2 {
   border-color: #f39c12 !important;
   box-shadow: none;
 }
 .form-group.has-error label {
   color: #f56954;
 }
-.form-group.has-error .form-control {
+.form-group.has-error .form-control2 {
   border-color: #f56954 !important;
   box-shadow: none;
 }

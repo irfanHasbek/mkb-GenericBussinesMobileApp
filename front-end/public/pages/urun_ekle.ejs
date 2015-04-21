@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%include ../partial-pages/css.ejs%>
+    </head>
+    <body class="skin-blue">
+       <%include ../partial-pages/master_head.ejs%>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+           <%include ../partial-pages/master_left.ejs%>
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">                
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1 style="font-size:22px;">
+                        Ürün Ekleme Ekranı
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-mobile-phone"></i> Mobil Uygulamalar</a></li>
+                        <li class="active">Ürün Ekle</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <div class="box box-info">
+                                    <!-- form start -->
+                                    <form  role="form" >
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="form-group ">
+                                                        <label>Ürün Grubu</label>
+                                                        <input type="text" class="form-control "  placeholder="Ürün Grubu Giriniz" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="form-group ">
+                                                        <label>İçerik</label>
+                                                        <input type="text" class="form-control "  placeholder="İçerik Giriniz" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="form-group ">
+                                                        <label>Pdf Yükle</label>
+                                                        <input type="file" class="form-control btn-default" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="pull-right ">
+                                                        <button class="btn btn-info pull-left">Yükle </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <div style="text-align:center">
+                                                <button type="submit" class="btn btn-primary btn-flat">Kaydet</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!-- /.box -->
+                            </div>
+                        </div>
+                    </div>
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+       <%include ../partial-pages/script.ejs%>
+        <script src="../js/helper.js/Helper.js"></script>
+    </body>
+</html>
