@@ -5,6 +5,7 @@ var GorevTanimiModeli = require('../Modeller/GorevTanimiModeli');
 var DokumanModeli = require('../Modeller/DokumanModeli');
 var UrunModeli = require('../Modeller/UrunModeli');
 var FiyatModeli= require("../Modeller/FiyatModeli");
+var ReferansModeli= require("../Modeller/ReferansModeli");
 
 function HTMLRouter(){
     var router = express.Router();
@@ -204,7 +205,13 @@ function HTMLRouter(){
         req.session.currentPage = '/html/referans_listele';
         req.session.pageLabel = 'referans';
         req.session.LeftMenuCategory = 'mobil';
-        res.render('referans_listele', {layout : false, session : req.session});
+        ReferansModeli.find({}, function(dbHatasi, listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state : false, data : dbHatasi});
+                return;  
+            }
+            res.render('referans_listele', {layout : false, session : req.session, referanslar : listelenen});
+        });
     });
     //Yapılmış Eğitim 
     

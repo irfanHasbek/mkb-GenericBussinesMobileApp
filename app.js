@@ -68,6 +68,7 @@ mongoose.connect(config.dbpath, function(err){
     createCrudRouter(app, './back-end/Modeller/DokumanModeli', '/dokuman_tanimi');
     createCrudRouter(app, './back-end/Modeller/UrunModeli', '/urun_tanimi');
     createCrudRouter(app, './back-end/Modeller/FiyatModeli', '/fiyat_tanimi');
+    createCrudRouter(app, './back-end/Modeller/ReferansModeli', '/referanslar');
 
     app.get('/', function(req, res){
         res.render('giris'); 
@@ -76,6 +77,27 @@ mongoose.connect(config.dbpath, function(err){
     //pdf yukleme
     app.post('/pdfyukle', multer({
         dest: './front-end/public/yuklemeler/pdfler',
+        rename: function (fieldname, filename) {
+            var hash = crypto.createHash('sha1');
+            hash.setEncoding('hex');
+            hash.write(filename);
+            hash.end();
+            return hash.read();
+        },
+        onFileUploadComplete: function (file) {
+            //console.log(file.fieldname + ' uploaded to  ' + file.path);
+        },
+        onError: function(error, next) {
+            console.log("Error occurred while uploading the file!!");
+        }
+    }),function(req, res){
+        //req.protocol
+        res.send({state : true, dosyaAdi : req['files'].pdfler.originalname, dosyaLinki : 'http://192.168.1.22' + ':3000' + '/yuklemeler/pdfler/' + req['files'].pdfler.name});
+    });
+    
+    //coklu resim yukleme
+    app.post('/cokluyukle', multer({
+        dest: './front-end/public/yuklemeler/medyalar',
         rename: function (fieldname, filename) {
             var hash = crypto.createHash('sha1');
             hash.setEncoding('hex');
