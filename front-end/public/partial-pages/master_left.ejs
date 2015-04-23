@@ -21,7 +21,7 @@
                     <i class="fa fa-home"></i> <span>Anasayfa</span>
                 </a>
             </li>
-            <li class="treeview <%if(session.pageLabel == 'kullanicilar'){%>active<%}%>">
+            <li class="treeview <%if(session.LeftMenuCategory == 'kullanicilar'){%>active<%}%>">
                 <a href="#">
                     <i class="fa fa-users"></i>
                     <span>Kullanıcılar</span>
@@ -35,14 +35,14 @@
                 </ul>
             </li>
             
-            <li class="treeview">
+            <li class="treeview <%if(session.LeftMenuCategory == 'mobil'){%> active <%}%>">
                 <a href="#">
                     <i class="fa fa-mobile"></i>
                     <span>Mobil Uygulama</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="treeview">
+                    <li class="treeview <%if(session.pageLabel == 'dokumanlar'){%> active <%}%>">
                         <a href="#">
                             <i class="fa fa-file-text-o"></i>
                             <span>Dökümanlar</span>
@@ -54,7 +54,7 @@
                             <li><a href="/html/dokuman_listele"><i class="fa fa-angle-double-right"></i> Döküman Listele</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview <%if(session.pageLabel == 'urunler'){%>active<%}%>">
                         <a href="#">
                             <i class="fa fa-tags"></i>
                             <span>Ürünler</span>

@@ -26,15 +26,17 @@
                             <div class="col-md-12">
                                 <div class="box box-info">
                                     <!-- form start -->
-                                    <form  role="form" >
+                                    <form id="formDokumanEkle" role="form" action="/dokuman_tanimi/arrayekle" method="post">
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Döküman Türü</label>
-                                                        <select  class="form-control">
-                                                            <option value="" selected disabled>...döküman türü seçiniz...</option>
-                                                            <option value="">Tür 1</option>
+                                                        <select name='_id' class="form-control" required>
+                                                            <option value="null" selected disabled>Döküman türü seçiniz...</option>
+                                                            <%for(var i = 0; i < dokumanTurleri.length; i++){%>
+                                                                <option value="<%=dokumanTurleri[i]._id%>"><%=dokumanTurleri[i].dokumanTuru%></option>
+                                                            <%}%>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -42,27 +44,20 @@
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
-                                                        <label>İçerik</label>
-                                                        <input type="text" class="form-control "  placeholder="İçerik Giriniz" required>
+                                                        <label>Dosya Adi</label>
+                                                        <input id="inpDosyaAdi" type="text" class="form-control " placeholder="İçerik Giriniz" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
-                                                        <label>Pdf Yükle</label>
-                                                        <input type="file" class="form-control btn-default"  placeholder="İçerik Giriniz" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-                                                    <div class="pull-right ">
-                                                        <button class="btn btn-info pull-left">Yükle </button>
+                                                        <button class="btn btn-info" data-toggle='modal' data-target='#uploadModal'>Dosya Sec</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div><!-- /.box-body -->
+                                        <input id="inpArrayItem" type="text" name="arrayItem" style="display:none;">
                                         <div class="box-footer">
                                             <div style="text-align:center">
                                                 <button type="submit" class="btn btn-primary btn-flat">Kaydet</button>
@@ -76,8 +71,28 @@
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Dosya yukle</h4>
+              </div>
+              <form id="formPdfYukle" action="/pdfyukle" enctype="multipart/form-data" method="post">
+                  <div class="modal-body">
+                     <label for="">Pdf Yukle</label>
+                     <input name="pdfler" type="file" class="form-control">
+                  </div>
+                  <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Kapat</a>
+                    <button id="btnSubmitModal" type="submit" class="btn btn-primary">Yukle</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
         <%include ../partial-pages/script.ejs%>
         <script src="../js/helper.js/Helper.js"></script>
-        
+        <script src="../js/pages-js/dokuman_ekle.js"></script>
     </body>
 </html>

@@ -40,23 +40,30 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <table class="table table-bordered gorevler">
+                                        <table class="table table-bordered urunler">
                                             <tr style="border-bottom:3px solid #3c8dbc;">
                                                 <th class="text-center" style="width: 40px">#</th>
-                                                <th>Ürün Grubu</th>
-                                                <th>İçerik </th>
-                                                <th class="text-center" style="width: 100px"></th>
+                                                <th>Döküman Turu</th>
+                                                <th>Döküman Adi</th>
+                                                <th>Döküman Linki</th>
+                                                <th>Ekleyen</th>
+                                                <th class="text-center" style="width:40px"></th>
                                             </tr>
                                             <tbody>
-                                                 <tr>
-                                                    <td class="text-center">1</td>
-                                                    <td>Döküman 1</td>
-                                                    <td>İçerik 1</td>
-                                                    <td>
-                                                        <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Düzenle"><i class="fa fa-edit"></i></button>
-                                                        <button class="btn btn-danger btn-sm sil " data-toggle="tooltip" data-placement="top" title="Sil"><i class="fa fa-trash-o"></i></button>
-                                                    </td>                                                
-                                                </tr>
+                                                 <%for(var i = 0; i < urunGruplari.length; i++){%>
+                                                     <%for(var j = 0; j < urunGruplari[i].icerik.length; j++){%>
+                                                         <tr id="<%=urunGruplari[i]._id%>" data='<%=urunGruplari[i].icerik[j]._id%>'>
+                                                            <td class="text-center"><%=(i+1)%></td>
+                                                            <td><%=urunGruplari[i].urunGrubu%></td>
+                                                            <td><%=urunGruplari[i].icerik[j].dosyaAdi%></td>
+                                                            <td><a href="<%=urunGruplari[i].icerik[j].dosyaLinki%>">Link</a></td>
+                                                            <td><%=urunGruplari[i].degistiren%></td>
+                                                            <td id="<%=urunGruplari[i].icerik[j]._id%>">
+                                                                <button class="btn btn-danger btn-sm sil " data-toggle="tooltip" data-placement="top" title="Sil"><i class="fa fa-trash-o"></i></button>
+                                                            </td>                                                
+                                                        </tr>
+                                                     <%}%>
+                                                 <%}%>
                                             </tbody>
                                         </table>
                                     </div><!-- /.box-body -->
@@ -69,5 +76,6 @@
         </div><!-- ./wrapper -->
        <%include ../partial-pages/script.ejs%>
         <script src="../js/helper.js/Helper.js"></script>
+        <script src="../js/pages-js/urun_listele.js"></script>
     </body>
 </html>

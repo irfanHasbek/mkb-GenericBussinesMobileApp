@@ -128,6 +128,33 @@ function removeFromTable(tableClass,url,callback){
         });       
     });
 }
+
+function removeFromTableNew(tableClass,url,tdOrder,callback){
+    $("."+tableClass).on("click",".sil",function(){
+        var id=$(this).closest("tr").attr("id");
+        var id2=$(this).closest("td").attr("id");
+        var data = {icerik : {dosyaAdi : $(this).closest("tr").find('td').eq(tdOrder).text()}};
+        //console.log('id : ' + id);
+        console.log('data : ' + JSON.stringify(data));
+        var tr=$("."+tableClass).find("tbody").find("tr[data="+id2+"]");
+        alertify.confirm("Silmek istediğinizden emin misiniz?",
+            function(){
+                wsPost(url,{_id:id, arrayItem : data},function(err,data){
+                    if(err){
+                        console.error(err);
+                        return;
+                    }
+                    alertify.success('Başarı ile silindi.');
+                    tr.remove();
+                    orderTable("."+tableClass);
+                    callback(id);
+                });
+            },
+            function() {
+               alertify.error('İşlem iptal edildi.');
+        });       
+    });
+}
 function updateFromTable(tableClass, url, data, callback){
     $("."+tableClass).on("click",".cancel",function(){
         var id=$(this).closest("td").attr("id");

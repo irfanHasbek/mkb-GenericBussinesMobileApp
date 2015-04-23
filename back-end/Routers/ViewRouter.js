@@ -2,6 +2,8 @@ var express = require('express');
 var KullaniciModeli = require('../Modeller/KullaniciModeli');
 var RolTanimiModeli = require('../Modeller/RolTanimiModeli');
 var GorevTanimiModeli = require('../Modeller/GorevTanimiModeli');
+var DokumanModeli = require('../Modeller/DokumanModeli');
+var UrunModeli = require('../Modeller/UrunModeli');
 
 function HTMLRouter(){
     var router = express.Router();
@@ -14,6 +16,7 @@ function HTMLRouter(){
     router.get('/rol_tanimi', function(req, res){
         req.session.currentPage = '/html/rol_tanimi';
         req.session.pageLabel = 'kullanicilar';
+        req.session.LeftMenuCategory = 'kullanicilar';
         RolTanimiModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, roller){
             if(dbHatasi || !roller){
                 res.send({state : false, data : dbHatasi});
@@ -26,6 +29,7 @@ function HTMLRouter(){
     router.get('/gorev_tanimi', function(req, res){
         req.session.currentPage = '/html/gorev_tanimi';
         req.session.pageLabel = 'kullanicilar';
+        req.session.LeftMenuCategory = 'kullanicilar';
         GorevTanimiModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, gorevler){
             if(dbHatasi || !gorevler){
                 res.send({state : false, data : dbHatasi});
@@ -38,6 +42,7 @@ function HTMLRouter(){
     router.get('/kullanici_tanimi', function(req, res){
         req.session.currentPage = '/html/kullanici_tanimi';
         req.session.pageLabel = 'kullanicilar';
+        req.session.LeftMenuCategory = 'kullanicilar';
         KullaniciModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasiKullanici, kullanicilar){
             if(dbHatasiKullanici || !kullanicilar){
                 res.send({state : false, data : dbHatasiRoller});
@@ -64,46 +69,88 @@ function HTMLRouter(){
     router.get('/dokuman_turu_ekle', function(req, res){
         req.session.currentPage = '/html/dokuman_turu_ekle';
         req.session.pageLabel = 'dokumanlar';
-        res.render('dokuman_turu_ekle', {layout : false, session : req.session});
+        req.session.LeftMenuCategory = 'mobil';
+        DokumanModeli.find({}, function(dbHatasi, listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state : false, data : dbHatasi});
+                return;  
+            }
+            res.render('dokuman_turu_ekle', {layout : false, session : req.session, dokumanTurleri : listelenen});
+        });
     });
     router.get('/dokuman_ekle', function(req, res){
         req.session.currentPage = '/html/dokuman_ekle';
         req.session.pageLabel = 'dokumanlar';
-        res.render('dokuman_ekle', {layout : false, session : req.session});
+        req.session.LeftMenuCategory = 'mobil';
+        DokumanModeli.find({}, function(dbHatasi, listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state : false, data : dbHatasi});
+                return;  
+            }
+            res.render('dokuman_ekle', {layout : false, session : req.session, dokumanTurleri : listelenen});
+        });
     });
     
     router.get('/dokuman_listele', function(req, res){
         req.session.currentPage = '/html/dokuman_listele';
         req.session.pageLabel = 'dokumanlar';
-        res.render('dokuman_listele', {layout : false, session : req.session});
+        req.session.LeftMenuCategory = 'mobil';
+        DokumanModeli.find({}, function(dbHatasi, listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state : false, data : dbHatasi});
+                return;  
+            }
+            res.render('dokuman_listele', {layout : false, session : req.session, dokumanlar : listelenen});
+        });
     });
     //Ürünler 
     router.get('/urun_grubu_ekle', function(req, res){
         req.session.currentPage = '/html/urun_grubu_ekle';
         req.session.pageLabel = 'urunler';
-        res.render('urun_grubu_ekle', {layout : false, session : req.session});
+        req.session.LeftMenuCategory = 'mobil';
+        UrunModeli.find({}, function(dbHatasi, listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state : false, data : dbHatasi});
+                return;  
+            }
+            res.render('urun_grubu_ekle', {layout : false, session : req.session, urunGrublari : listelenen});
+        });
     });
     router.get('/urun_ekle', function(req, res){
         req.session.currentPage = '/html/urun_ekle';
         req.session.pageLabel = 'urunler';
-        res.render('urun_ekle', {layout : false, session : req.session});
+        req.session.LeftMenuCategory = 'mobil';
+        UrunModeli.find({}, function(dbHatasi, listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state : false, data : dbHatasi});
+                return;  
+            }
+            res.render('urun_ekle', {layout : false, session : req.session, urunGruplari : listelenen});
+        });
     });
-    
     router.get('/urun_listele', function(req, res){
         req.session.currentPage = '/html/urun_listele';
         req.session.pageLabel = 'urunler';
-        res.render('urun_listele', {layout : false, session : req.session});
+        req.session.LeftMenuCategory = 'mobil';
+        UrunModeli.find({}, function(dbHatasi, listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state : false, data : dbHatasi});
+                return;  
+            }
+            res.render('urun_listele', {layout : false, session : req.session, urunGruplari : listelenen});
+        });
     });
-    //Eğitim Takvimi 
-    
+    //Eğitim Takvimi
     router.get('/egitim_takvimi_ekle', function(req, res){
         req.session.currentPage = '/html/egitim_takvimi_ekle';
         req.session.pageLabel = 'egitim_takvimi';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('egitim_takvimi_ekle', {layout : false, session : req.session});
     });
     router.get('/egitim_takvimi_listele', function(req, res){
         req.session.currentPage = '/html/egitim_takvimi_listele';
         req.session.pageLabel = 'egitim_takvimi';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('egitim_takvimi_listele', {layout : false, session : req.session});
     });
     
@@ -112,11 +159,13 @@ function HTMLRouter(){
     router.get('/fiyat_ekle', function(req, res){
         req.session.currentPage = '/html/fiyat_ekle';
         req.session.pageLabel = 'fiyat';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('fiyat_ekle', {layout : false, session : req.session});
     });
     router.get('/fiyat_listele', function(req, res){
         req.session.currentPage = '/html/fiyat_listele';
         req.session.pageLabel = 'fiyat';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('fiyat_listele', {layout : false, session : req.session});
     });
     //Referans 
@@ -124,11 +173,13 @@ function HTMLRouter(){
     router.get('/referans_ekle', function(req, res){
         req.session.currentPage = '/html/referans_ekle';
         req.session.pageLabel = 'referans';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('referans_ekle', {layout : false, session : req.session});
     });
     router.get('/referans_listele', function(req, res){
         req.session.currentPage = '/html/referans_listele';
         req.session.pageLabel = 'referans';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('referans_listele', {layout : false, session : req.session});
     });
     //Yapılmış Eğitim 
@@ -136,11 +187,13 @@ function HTMLRouter(){
     router.get('/yapilmis_egitim_ekle', function(req, res){
         req.session.currentPage = '/html/yapilmis_egitim_ekle';
         req.session.pageLabel = 'yapilmis_egitim';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('yapilmis_egitim_ekle', {layout : false, session : req.session});
     });
     router.get('/yapilmis_egitim_listele', function(req, res){
         req.session.currentPage = '/html/yapilmis_egitim_listele';
         req.session.pageLabel = 'yapilmis_egitim';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('yapilmis_egitim_listele', {layout : false, session : req.session});
     });
     //Haberler 
@@ -148,11 +201,13 @@ function HTMLRouter(){
     router.get('/haber_ekle', function(req, res){
         req.session.currentPage = '/html/haber_ekle';
         req.session.pageLabel = 'haberler';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('haber_ekle', {layout : false, session : req.session});
     });
     router.get('/haber_listele', function(req, res){
         req.session.currentPage = '/html/haber_listele';
         req.session.pageLabel = 'haberler';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('haber_listele', {layout : false, session : req.session});
     });
     //İletişim 
@@ -160,11 +215,13 @@ function HTMLRouter(){
     router.get('/iletisim_ekle', function(req, res){
         req.session.currentPage = '/html/iletisim_ekle';
         req.session.pageLabel = 'iletisim';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('iletisim_ekle', {layout : false, session : req.session});
     });
     router.get('/iletisim_listele', function(req, res){
         req.session.currentPage = '/html/iletisim_listele';
         req.session.pageLabel = 'iletisim';
+        req.session.LeftMenuCategory = 'mobil';
         res.render('iletisim_listele', {layout : false, session : req.session});
     });
     

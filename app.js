@@ -5,6 +5,8 @@ var config = require('./config/development');
 var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var CRUDRouter = require('./back-end/Routers/Router');
+var multer = require('multer');
+var crypto = require('crypto');
 
 function createCrudRouter(app, modelPath, url){
     var Model = require(modelPath);
@@ -42,7 +44,9 @@ mongoose.connect(config.dbpath, function(err){
     app.use(bodyParser.json());
     
     app.use(function(req, res, next){
-        if(req.session.giris || req.originalUrl == '/hesap/giris' || req.originalUrl == '/onyukleme/yoneticiekle'){
+        //to do 
+        var urlList = req.originalUrl.split('/');
+        if(req.session.giris || req.originalUrl == '/hesap/giris' || req.originalUrl == '/onyukleme/yoneticiekle' || req.originalUrl.indexOf('/listele') > 0){
             console.log('sessionCheck is true');
             next();
         }else{
@@ -50,6 +54,7 @@ mongoose.connect(config.dbpath, function(err){
             res.render('giris');
         }
     });
+
     //Onyukleme 
     assignRouter(app, './back-end/Routers/OnyuklemeRouter', '/onyukleme');
     //giris ve cikis
@@ -60,9 +65,32 @@ mongoose.connect(config.dbpath, function(err){
     createCrudRouter(app, './back-end/Modeller/KullaniciModeli', '/kullanici');
     createCrudRouter(app, './back-end/Modeller/RolTanimiModeli', '/rol_tanimi');
     createCrudRouter(app, './back-end/Modeller/GorevTanimiModeli', '/gorev_tanimi');
+    createCrudRouter(app, './back-end/Modeller/DokumanModeli', '/dokuman_tanimi');
+    createCrudRouter(app, './back-end/Modeller/UrunModeli', '/urun_tanimi');
 
     app.get('/', function(req, res){
         res.render('giris'); 
+    });
+    
+    //pdf yukleme
+    app.post('/pdfyukle', multer({
+        dest: './front-end/public/yuklemeler/pdfler',
+        rename: function (fieldname, filename) {
+            var hash = crypto.createHash('sha1');
+            hash.setEncoding('hex');
+            hash.write(filename);
+            hash.end();
+            return hash.read();
+        },
+        onFileUploadComplete: function (file) {
+            //console.log(file.fieldname + ' uploaded to  ' + file.path);
+        },
+        onError: function(error, next) {
+            console.log("Error occurred while uploading the file!!");
+        }
+    }),function(req, res){
+        //req.protocol
+        res.send({state : true, dosyaAdi : req['files'].pdfler.originalname, dosyaLinki : 'http://192.168.1.22' + ':3000' + '/yuklemeler/pdfler/' + req['files'].pdfler.name});
     });
     
     if (!module.parent) {

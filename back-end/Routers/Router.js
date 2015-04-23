@@ -5,17 +5,24 @@ function CRUD(model){
     router.get('/listele', function(req, res) {
         model.find({}, function(dbHatasi, listelenen) {
             if(dbHatasi) {
+                res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
+                res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
+                res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
                 res.send({state : false, data : dbHatasi});
                 return;
             }
             else{
+                res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
+                res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
+                res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
                 res.send({state : true, data : listelenen});
             }
         });
     });
 
-    router.post('/ekle', function(req, res){        
-        new model(req.body).save(function(dbHatasi, eklenen) {
+    router.post('/ekle', function(req, res){  
+        var modelObject = new model(req.body);
+        modelObject.save(function(dbHatasi, eklenen) {
             if(dbHatasi) {
                 res.send({state : false, data : dbHatasi});
                 return;
@@ -76,7 +83,37 @@ function CRUD(model){
             }
         });
     });
+    /*
+        CityModel.update({_id: city._id},{$pushAll : newTown},function(err, town){     
+    */
+    router.post('/arrayekle', function(req, res) {
+        //console.log(JSON.stringify(req.body.arrayItem));
+        model.update({_id : req.body._id}, {$pushAll : JSON.parse(req.body.arrayItem)}, function(dbHatasi, etkilenenSatir) {
+            if(dbHatasi) {
+                res.send({state : false, data : dbHatasi});
+                return;
+            }
+            else {
+                res.send({state : true, data : etkilenenSatir});
+            }
+        });
+    });
     
+    /*
+        //{$pull :{ towns : {townName : resp.townName}}    
+    */
+    router.post('/arraysil', function(req, res) {
+        //console.log(JSON.stringify(req.body.arrayItem));
+        model.update({_id : req.body._id}, {$pull : req.body.arrayItem}, function(dbHatasi, etkilenenSatir) {
+            if(dbHatasi) {
+                res.send({state : false, data : dbHatasi});
+                return;
+            }
+            else {
+                res.send({state : true, data : etkilenenSatir});
+            }
+        });
+    });
     return router;
 }
 module.exports = CRUD;
