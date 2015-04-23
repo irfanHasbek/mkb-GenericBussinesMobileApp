@@ -30,17 +30,7 @@
                                     </div><!-- /.box-header -->
                                     
                                     <div class="box-body">
-                                       <div class="row">
-                                            <div class="col-md-1">
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">1</option>
-                                                    <option value="">2</option>
-                                                    <option value="">3</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <table class="table table-bordered urunler">
+                                        <table class="table table-bordered bayiler">
                                             <tr style="border-bottom:3px solid #3c8dbc;">
                                                 <th class="text-center" style="width: 40px">#</th>
                                                 <th>Bayi Adı</th>
@@ -53,19 +43,21 @@
                                                 <th class="text-center" style="width:40px"></th>
                                             </tr>
                                             <tbody>
-                                                 <tr>
-                                                    <td class="text-center">1</td>
-                                                    <td>Bayi 1</td>
-                                                    <td>bayi@bayi.com</td>
-                                                    <td>02322222222</td>
-                                                    <td>05555555555</td>
-                                                    <td>05555555555</td>
-                                                    <td>05555555555</td>
-                                                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, fugiat, reprehenderit! </td>
-                                                    <td>
+                                                <%for(var i=0;i<iletisimListesi.length;i++){%>
+                                                    <tr id="<%=iletisimListesi[i]._id%>">
+                                                    <td class="text-center"><%=i+1%></td>
+                                                    <td><%=iletisimListesi[i].bayiAdi%></td>
+                                                    <td><%=iletisimListesi[i].email%></td>
+                                                    <td><%=iletisimListesi[i].telefon1%></td>
+                                                    <td><%=iletisimListesi[i].telefon2%></td>
+                                                    <td><%=iletisimListesi[i].gsm%></td>
+                                                    <td><%=iletisimListesi[i].fax%></td>
+                                                    <td><%=iletisimListesi[i].adres%></td>
+                                                    <td id="<%=iletisimListesi[i]._id%>">
                                                         <button class="btn btn-danger btn-sm sil " data-toggle="tooltip" data-placement="top" title="Sil"><i class="fa fa-trash-o"></i></button>
                                                     </td>                                                
                                                 </tr>
+                                                <%}%>
                                             </tbody>
                                         </table>
                                     </div><!-- /.box-body -->
@@ -78,5 +70,6 @@
         </div><!-- ./wrapper -->
        <%include ../partial-pages/script.ejs%>
         <script src="../js/helper.js/Helper.js"></script>
+        <script src="../js/pages-js/iletisim_listele.js"></script>
     </body>
 </html>

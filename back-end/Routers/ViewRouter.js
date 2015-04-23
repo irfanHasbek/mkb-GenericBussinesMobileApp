@@ -248,19 +248,19 @@ function HTMLRouter(){
         req.session.currentPage = '/html/iletisim_ekle';
         req.session.pageLabel = 'iletisim';
         req.session.LeftMenuCategory = 'mobil';
-        IletisimModeli.find({},function(dbHatasi,listenen){
-            if(dbHatasi || !listenen){
-                res.send({state :false,data:dbHatasi});
-                return;
-            }
-             res.render('iletisim_ekle', {layout : false, session : req.session});
-        });
+        res.render('iletisim_ekle', {layout : false, session : req.session});
     });
     router.get('/iletisim_listele', function(req, res){
         req.session.currentPage = '/html/iletisim_listele';
         req.session.pageLabel = 'iletisim';
         req.session.LeftMenuCategory = 'mobil';
-        res.render('iletisim_listele', {layout : false, session : req.session});
+        IletisimModeli.find({},function(dbHatasi,listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state:false,data:dbHatasi});
+                return;
+            }
+            res.render('iletisim_listele', {layout : false, session : req.session,iletisimListesi:listelenen});
+        });
     });
     
     return router;
