@@ -26,13 +26,13 @@
                             <div class="col-md-12">
                                 <div class="box box-info">
                                     <!-- form start -->
-                                    <form  role="form" >
+                                    <form id="formReferansEkle" role="form" action="/referanslar/cokluekle" method="post">
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Proje Yeri</label>
-                                                        <input type="text" class="form-control " placeholder="Proje Yeri Giriniz"  required>
+                                                        <input name="projeYeri" type="text" class="form-control " placeholder="Proje Yeri Giriniz"  required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -40,7 +40,7 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Bayi</label>
-                                                        <input type="text" class="form-control " placeholder="Bayi Giriniz"  required>
+                                                        <input name="bayi" type="text" class="form-control " placeholder="Bayi Giriniz"  required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -48,7 +48,7 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Kullanılan Ürün</label>
-                                                        <input type="text" class="form-control "  placeholder="Kullanılan Ürün Giriniz" required>
+                                                        <input name="kullanilanUrun" type="text" class="form-control "  placeholder="Kullanılan Ürün Giriniz" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -56,10 +56,13 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Açıklama</label>
-                                                        <textarea rows="3" class="form-control " placeholder="Açıklama giriniz" style="resize:vertical" required></textarea>
+                                                        <textarea name="aciklama" rows="3" class="form-control " placeholder="Açıklama giriniz" style="resize:vertical" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <input id="inpFotografListesi" name="fotograflar" style="display:none;">
+                                            <input name="firmaKodu" style="display:none;" value="<%=session.kullanici.firmaKodu%>">
+                                            <input name="degistiren" style="display:none;" value="<%=session.kullanici.isim%> <%=session.kullanici.soyisim%>">
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="pull-right ">
@@ -88,10 +91,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Dosya yukle</h4>
               </div>
-              <form id="formPdfYukle" action="/cokluyukle" enctype="multipart/form-data" method="post">
+              <form id="formResimYukle" action="/cokluyukle" enctype="multipart/form-data" method="post">
                   <div class="modal-body">
-                     <label for="">Pdf Yukle</label>
-                     <input name="pdfler" type="file" class="form-control" multiple>
+                     <label for="">Resim Yukle</label>
+                     <input name="resimler" type="file" class="form-control" multiple>
                   </div>
                   <div class="modal-footer">
                     <a class="btn btn-default" data-dismiss="modal">Kapat</a>

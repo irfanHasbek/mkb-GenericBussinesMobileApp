@@ -5,23 +5,28 @@ function clickHandlers(){
 }
 
 function formHandlers(){
-    $('#formPdfYukle').ajaxForm(function(data){
+    $('#formResimYukle').ajaxForm(function(data){
         if(!data.state){
             alertify.error('pdf yuklenemedi.');
             return;
         }
-        var arrayItem = {
-            icerik : [{dosyaAdi : $('#inpDosyaAdi').val(), dosyaLinki : data.dosyaLinki}]  
+        var array = [];
+        var resimListesi = data.fotografListesi.resimler;
+        for(var i = 0; i < resimListesi.length; i++){
+            var icerik = {link : resimListesi[i].path.replace("front-end/public/", data.host)};
+            array.push(icerik);
         }
-        $('#inpArrayItem').val(JSON.stringify(arrayItem));
+        $('#inpFotografListesi').val(JSON.stringify(array));
         alertify.success('Yukleme basarili.')
     });
     
-    $('#formDokumanEkle').ajaxForm(function(data){
+    $('#formReferansEkle').ajaxForm(function(data){
         if(!data.state){
-            alertify.error('pdf yuklenemedi.');
+            alertify.error('Referans eklenemedi.');
+            console.log(JSON.stringify(data));
             return;
         }
+        $('#formResimListesi').submit();
         alertify.success('Basariyla kaydedildi.');
         $('input[type=text]').val('');
         $('input[type=file]').val('');

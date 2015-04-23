@@ -5,8 +5,9 @@ var ReferansModeli = new mongoose.Schema({
     bayi: String,
     kullanilanUrun: String,
     aciklama: String,
-    fotograf: [{link : String}],
-    firmaKodu:String
+    fotograflar: [{link : String}],
+    firmaKodu:String,
+    degistiren : String
 });
 
 module.exports = mongoose.model('referanslar', ReferansModeli);

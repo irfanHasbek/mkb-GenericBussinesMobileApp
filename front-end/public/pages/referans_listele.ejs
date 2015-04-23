@@ -40,7 +40,7 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <table class="table table-bordered gorevler">
+                                        <table class="table table-bordered referanslar">
                                             <tr style="border-bottom:3px solid #3c8dbc;">
                                                 <th class="text-center" style="width: 40px">#</th>
                                                 <th>Proje Yeri</th>
@@ -51,22 +51,25 @@
                                                 <th class="text-center" style="width: 100px"></th>
                                             </tr>
                                             <tbody>
-                                                 <tr>
-                                                    <td class="text-center">1</td>
-                                                    <td>Aydın</td>
-                                                    <td>Bayi1</td>
-                                                    <td>Ürün1</td>
-                                                    <td>Açıklama1</td>
-                                                    <td>
-                                                        <a href="../img/bitkisel_yag.jpg" data-toggle="lightbox" data-title="Ürün Başlığı Buraya Yazılacak">
-                                                            <img src="../img/bitkisel_yag.jpg" alt="" class="img-responsive img-thumbnail" style="max-height:40px;">
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Düzenle"><i class="fa fa-edit"></i></button>
-                                                        <button class="btn btn-danger btn-sm sil " data-toggle="tooltip" data-placement="top" title="Sil"><i class="fa fa-trash-o"></i></button>
-                                                    </td>                                                
-                                                </tr>
+                                                 <%for(var i = 0; i< referanslar.length; i++){%>
+                                                     <tr id="<%=referanslar[i]._id%>">
+                                                        <td class="text-center"><%=(i+1)%></td>
+                                                        <td><%=referanslar[i].projeYeri%></td>
+                                                        <td><%=referanslar[i].bayi%></td>
+                                                        <td><%=referanslar[i].kullanilanUrun%></td>
+                                                        <td><%=referanslar[i].aciklama%></td>
+                                                        <td>
+                                                            <%for(var j = 0; j < referanslar[i].fotograflar.length; j++){%>
+                                                                <a href="<%=referanslar[i].fotograflar[j].link%>" data-toggle="lightbox" data-title="Fotograf-<%=(i+1)%>">
+                                                                    <img src="<%=referanslar[i].fotograflar[j].link%>" alt="" class="img-responsive img-thumbnail" style="max-height:40px;">
+                                                                </a>
+                                                            <%}%>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-danger btn-sm sil " data-toggle="tooltip" data-placement="top" title="Sil"><i class="fa fa-trash-o"></i></button>
+                                                        </td>                                                
+                                                    </tr>
+                                                 <%}%>
                                             </tbody>
                                         </table>
                                     </div><!-- /.box-body -->
@@ -79,5 +82,6 @@
         </div><!-- ./wrapper -->
        <%include ../partial-pages/script.ejs%>
         <script src="../js/helper.js/Helper.js"></script>
+        <script src="../js/pages-js/referans_listele.js"></script>
     </body>
 </html>

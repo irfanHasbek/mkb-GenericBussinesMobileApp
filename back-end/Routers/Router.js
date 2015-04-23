@@ -32,6 +32,22 @@ function CRUD(model){
             }
         });
     });
+    //coklu resim iceren objeler
+    router.post('/cokluekle', function(req, res){  
+        var temp = req.body;
+        temp.fotograflar = JSON.parse(req.body.fotograflar);
+        var modelObject = new model(temp);
+        //console.log(JSON.stringify(modelObject));
+        modelObject.save(function(dbHatasi, eklenen) {
+            if(dbHatasi) {
+                res.send({state : false, data : dbHatasi});
+                return;
+            }
+            else {
+                res.send({state : true, data : eklenen});
+            }
+        });
+    });
     
     router.get('/hepsinisil', function(req, res) {
         model.remove({}, function(dbHatasi) {
