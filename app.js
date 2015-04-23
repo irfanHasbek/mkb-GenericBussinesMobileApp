@@ -67,6 +67,7 @@ mongoose.connect(config.dbpath, function(err){
     createCrudRouter(app, './back-end/Modeller/GorevTanimiModeli', '/gorev_tanimi');
     createCrudRouter(app, './back-end/Modeller/DokumanModeli', '/dokuman_tanimi');
     createCrudRouter(app, './back-end/Modeller/UrunModeli', '/urun_tanimi');
+    createCrudRouter(app, './back-end/Modeller/FiyatModeli', '/fiyat_tanimi');
 
     app.get('/', function(req, res){
         res.render('giris'); 

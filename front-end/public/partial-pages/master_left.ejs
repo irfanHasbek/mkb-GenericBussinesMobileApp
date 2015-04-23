@@ -77,13 +77,14 @@
                             <li><a href="/html/egitim_takvimi_listele"><i class="fa fa-angle-double-right"></i> Eğitim Takvimi Listele</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview <%if(session.pageLabel == 'fiyat'){%>active<%}%>">
                         <a href="#">
                             <i class="fa fa-credit-card"></i>
                             <span>Fiyat</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
+                           <li><a href="/html/fiyat_grubu_ekle"><i class="fa fa-angle-double-right"></i> Fiyat Grubu Ekle</a></li>
                             <li><a href="/html/fiyat_ekle"><i class="fa fa-angle-double-right"></i> Fiyat Ekle</a></li>
                             <li><a href="/html/fiyat_listele"><i class="fa fa-angle-double-right"></i> Fiyat Listele</a></li>
                         </ul>

@@ -27,3 +27,5 @@ build/Release
 /node_modules
 /db
 /front-end/public/yuklemeler/pdfler
+mongorun.bat
+noderun.bat

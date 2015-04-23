@@ -12,11 +12,11 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1 style="font-size:22px;">
-                        Ürün Grubu Ekleme Ekranı
+                        Fiyat Grubu Ekleme Ekranı
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-mobile-phone"></i> Mobil Uygulamalar</a></li>
-                        <li class="active">Ürün Grubu Ekle</li>
+                        <li class="active">Fiyat Grubu Ekle</li>
                     </ol>
                 </section>
                 <!-- Main content -->
@@ -26,16 +26,16 @@
                             <div class="col-md-12">
                                 <div class="box box-info">
                                     <!-- form start -->
-                                    <form id="formUrunTanimi" action="/urun_tanimi/ekle" method="post">
+                                    <form id="formFiyatTanimi" action="/fiyat_tanimi/ekle" method="post">
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
-                                                        <label>Ürün Grubu Adı</label>
-                                                        <input name="urunGrubu" type="text" class="form-control" placeholder="Urun Grubu Giriniz" required>
-                                                        <input name="firmaKodu"  style="display:none;" value="<%=session.kullanici.firmaKodu%>">
+                                                        <label>Fiyat Grubu Adı</label>
+                                                        <input name="urunFiyatGrubu" type="text" class="form-control" placeholder="Fiyat Grubu Giriniz" required>
+                                                        <input name="firmaKodu" style="display:none;" value="<%=session.kullanici.firmaKodu%>">
                                                         <!--<input id="inpIcerik" name="icerik" type="text" style="display:none;" value="<%=JSON.stringify('[]')%>">-->
-                                                        <input name="degistiren"  style="display:none;" value="<%=session.kullanici.isim%> <%=session.kullanici.soyisim%>">
+                                                        <input name="degistiren" style="display:none;" value="<%=session.kullanici.isim%> <%=session.kullanici.soyisim%>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -52,22 +52,22 @@
                                         <div class="col-md-12">
                                             <div class="box">
                                                 <div class="box-header">
-                                                    <h3 class="box-title">Ürün Grubu Listeleme</h3>
+                                                    <h3 class="box-title">Fiyat Grubu Listeleme</h3>
                                                 </div><!-- /.box-header -->
                                                 <div class="box-body">
-                                                    <table class="table table-bordered urunGrubu">
+                                                    <table class="table table-bordered fiyatGrubu">
                                                         <tr style="border-bottom:3px solid #3c8dbc;">
                                                             <th class="text-center" style="width: 40px">#</th>
-                                                            <th>Ürün Grubu</th>
+                                                            <th>Fiyat Grubu</th>
                                                             <th>İşlemi Yapan</th>
                                                             <th class="text-center" style="width: 40px"></th>
                                                         </tr>
                                                         <tbody>
-                                                             <%for(var i = 0; i < urunGrublari.length; i++){%>
-                                                                 <tr id="<%=urunGrublari[i]._id%>">
+                                                             <%for(var i = 0; i < fiyatGrublari.length; i++){%>
+                                                                 <tr id="<%=fiyatGrublari[i]._id%>">
                                                                     <td class="text-center"><%=i+1%>.</td>
-                                                                    <td><%=urunGrublari[i].urunGrubu%></td>
-                                                                    <td><%=urunGrublari[i].degistiren%></td>
+                                                                    <td><%=fiyatGrublari[i].urunFiyatGrubu%></td>
+                                                                    <td><%=fiyatGrublari[i].degistiren%></td>
                                                                     <td><button class="btn btn-danger btn-sm sil"><i class="fa fa-trash-o"></i></td>                                                
                                                                 </tr>
                                                              <%}%>
@@ -86,6 +86,6 @@
         </div><!-- ./wrapper -->
         <%include ../partial-pages/script.ejs%>
         <script src="../js/helper.js/Helper.js"></script>
-        <script src="../js/pages-js/urun_grubu.js"></script>
+        <script src="../js/pages-js/fiyat_grubu.js"></script>
     </body>
 </html>

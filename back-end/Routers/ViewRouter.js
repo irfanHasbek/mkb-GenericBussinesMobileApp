@@ -4,6 +4,7 @@ var RolTanimiModeli = require('../Modeller/RolTanimiModeli');
 var GorevTanimiModeli = require('../Modeller/GorevTanimiModeli');
 var DokumanModeli = require('../Modeller/DokumanModeli');
 var UrunModeli = require('../Modeller/UrunModeli');
+var FiyatModeli= require("../Modeller/FiyatModeli");
 
 function HTMLRouter(){
     var router = express.Router();
@@ -155,18 +156,41 @@ function HTMLRouter(){
     });
     
     //Fiyat 
-    
-    router.get('/fiyat_ekle', function(req, res){
+    router.get('/fiyat_grubu_ekle', function(req, res){
+        req.session.currentPage = '/html/fiyat_grubu_ekle';
+        req.session.pageLabel = 'fiyat';
+        req.session.LeftMenuCategory = 'mobil';
+        FiyatModeli.find({}, function(dbHatasi, listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state : false, data : dbHatasi});
+                return;  
+            }
+            res.render('fiyat_grubu_ekle', {layout : false, session : req.session, fiyatGrublari : listelenen});
+        });
+    });
+        router.get('/fiyat_ekle', function(req, res){
         req.session.currentPage = '/html/fiyat_ekle';
         req.session.pageLabel = 'fiyat';
         req.session.LeftMenuCategory = 'mobil';
-        res.render('fiyat_ekle', {layout : false, session : req.session});
+        FiyatModeli.find({}, function(dbHatasi, listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state : false, data : dbHatasi});
+                return;  
+            }
+            res.render('fiyat_ekle', {layout : false, session : req.session, fiyatGruplari : listelenen});
+        });
     });
-    router.get('/fiyat_listele', function(req, res){
+        router.get('/fiyat_listele', function(req, res){
         req.session.currentPage = '/html/fiyat_listele';
         req.session.pageLabel = 'fiyat';
         req.session.LeftMenuCategory = 'mobil';
-        res.render('fiyat_listele', {layout : false, session : req.session});
+        FiyatModeli.find({}, function(dbHatasi, listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state : false, data : dbHatasi});
+                return;  
+            }
+            res.render('fiyat_listele', {layout : false, session : req.session, fiyatGruplari : listelenen});
+        });
     });
     //Referans 
     
