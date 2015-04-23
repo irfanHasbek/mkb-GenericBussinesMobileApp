@@ -12,9 +12,8 @@ function formHandlers(){
         }
         var array = [];
         var resimListesi = data.fotografListesi.resimler;
-        // Todo slashları düzeltmeyi unutma
         for(var i = 0; i < resimListesi.length; i++){
-            var icerik = {link : resimListesi[i].path.replace("front-end\\public\\", data.host)};
+            var icerik = {link : resimListesi[i].path.replace("front-end/public/", data.host)};
             array.push(icerik);
         }
         $('#inpFotografListesi').val(JSON.stringify(array));

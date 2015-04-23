@@ -60,9 +60,9 @@
                                                         <td><%=referanslar[i].aciklama%></td>
                                                         <td>
                                                             <%for(var j = 0; j < referanslar[i].fotograflar.length; j++){%>
-                                                                <a href="<%=referanslar[i].fotograflar[j].link%>" data-toggle="lightbox" data-title="Fotograf-<%=(i+1)%>">
+                                                                <a temp="<%=referanslar[i].fotograflar[j]._id%>" href="<%=referanslar[i].fotograflar[j].link%>" data-toggle="lightbox" data-title="Fotograf-<%=(i+1)%>">
                                                                     <img src="<%=referanslar[i].fotograflar[j].link%>" alt="" class="img-responsive img-thumbnail" style="max-height:60px;">
-                                                                    <a href="" style="margin-top:-5px; margin-left:-10px; position:absolute;" data-toggle="tooltip" data-title="Sil" data-placement="top"><i class="fa fa-times-circle" style="font-size:18px; color:#f56954"></i></a>
+                                                                    <a class="resimSil" href="Javascript:void(0)" id="<%=referanslar[i].fotograflar[j]._id%>" style="margin-top:-5px; margin-left:-10px; position:absolute;" data-toggle="tooltip" data-title="Sil" data-placement="top"><i class="fa fa-times-circle" style="font-size:18px; color:#f56954"></i></a>
                                                                 </a>
                                                             <%}%>
                                                         </td>
