@@ -6,6 +6,7 @@ var DokumanModeli = require('../Modeller/DokumanModeli');
 var UrunModeli = require('../Modeller/UrunModeli');
 var FiyatModeli= require("../Modeller/FiyatModeli");
 var ReferansModeli= require("../Modeller/ReferansModeli");
+var IletisimModeli=require("../Modeller/IletisimModeli");
 
 function HTMLRouter(){
     var router = express.Router();
@@ -247,7 +248,13 @@ function HTMLRouter(){
         req.session.currentPage = '/html/iletisim_ekle';
         req.session.pageLabel = 'iletisim';
         req.session.LeftMenuCategory = 'mobil';
-        res.render('iletisim_ekle', {layout : false, session : req.session});
+        IletisimModeli.find({},function(dbHatasi,listenen){
+            if(dbHatasi || !listenen){
+                res.send({state :false,data:dbHatasi});
+                return;
+            }
+             res.render('iletisim_ekle', {layout : false, session : req.session});
+        });
     });
     router.get('/iletisim_listele', function(req, res){
         req.session.currentPage = '/html/iletisim_listele';

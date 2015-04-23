@@ -26,13 +26,13 @@
                             <div class="col-md-12">
                                 <div class="box box-info">
                                     <!-- form start -->
-                                    <form  role="form" >
+                                    <form id="frmIletisim" role="form" method="post" action="/iletisim/ekle">
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Bayi Adı</label>
-                                                        <input id="" type="text" class="form-control " placeholder="Bayi Adı Giriniz" required>
+                                                        <input id="" type="text" name="bayiAdi" class="form-control " placeholder="Bayi Adı Giriniz" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -40,7 +40,7 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>E-Mail</label>
-                                                        <input id="" type="text" class="form-control " placeholder="ornek@ornek.com" required>
+                                                        <input id="" type="text" name="email" class="form-control " placeholder="ornek@ornek.com" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -48,7 +48,7 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Telefon-1</label>
-                                                        <input id="" type="text" class="form-control " placeholder="Telefon-1 giriniz" data-inputmask='"mask": "(999) 999-9999"' data-mask  required>
+                                                        <input id="" type="text" name="telefon1" class="form-control " placeholder="Telefon-1 giriniz" data-inputmask='"mask": "(999) 999-9999"' data-mask  required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -56,7 +56,7 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Telefon-2</label>
-                                                        <input id="" type="text" class="form-control " placeholder="Telefon-2 giriniz" data-inputmask='"mask": "(999) 999-9999"' data-mask  >
+                                                        <input id="" type="text" name="telefon2" class="form-control " placeholder="Telefon-2 giriniz" data-inputmask='"mask": "(999) 999-9999"' data-mask  >
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,7 +64,7 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>GSM </label>
-                                                        <input id="" type="text" class="form-control " placeholder="GSM giriniz" data-inputmask='"mask": "(999) 999-9999"' data-mask  required>
+                                                        <input id="" type="text" name="gsm" class="form-control " placeholder="GSM giriniz" data-inputmask='"mask": "(999) 999-9999"' data-mask  required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -72,7 +72,7 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Fax</label>
-                                                        <input id="" type="text" class="form-control " placeholder="Fax giriniz" data-inputmask='"mask": "(999) 999-9999"' data-mask  required>
+                                                        <input id="" type="text" name="fax" class="form-control " placeholder="Fax giriniz" data-inputmask='"mask": "(999) 999-9999"' data-mask  required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,7 +80,7 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Adres</label>
-                                                        <textarea cols="4" class="form-control" style="resize:vertical"></textarea>
+                                                        <textarea cols="4" name="adres" class="form-control" style="resize:vertical"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -100,5 +100,6 @@
         </div>
         <%include ../partial-pages/script.ejs%>
         <script src="../js/helper.js/Helper.js"></script>
+        <script src="../js/pages-js/iletisim.js"></script>
     </body>
 </html>
