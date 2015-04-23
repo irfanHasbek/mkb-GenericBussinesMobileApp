@@ -27,5 +27,6 @@ build/Release
 /node_modules
 /db
 /front-end/public/yuklemeler/pdfler
+/front-end/public/yuklemeler/medyalar
 mongorun.bat
 noderun.bat
