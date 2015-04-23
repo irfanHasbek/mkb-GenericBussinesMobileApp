@@ -114,7 +114,7 @@ mongoose.connect(config.dbpath, function(err){
         }
     }),function(req, res){
         //req.protocol
-        res.send({state : true, fotografListesi : req['files'], host : "http://192.168.1.22:3000/"});
+        res.send({state : true, fotografListesi : req['files'], host : "http://localhost:3000/"});
     });
     
     if (!module.parent) {
