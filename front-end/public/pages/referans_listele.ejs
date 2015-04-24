@@ -47,29 +47,27 @@
                                                 <th>Bayi</th>
                                                 <th>Kullanılan Ürün</th>
                                                 <th>Açıklama</th>
-                                                <th>Fotoğraf</th>
-                                                <th class="text-center" style="width: 100px"></th>
+                                                <th style="width: 200px">Fotoğraf</th>
+                                                <th class="text-center" style="width: 40px"></th>
                                             </tr>
                                             <tbody>
                                                  <%for(var i = 0; i< referanslar.length; i++){%>
-                                                     <tr id="<%=referanslar[i]._id%>">
-                                                        <td class="text-center"><%=(i+1)%></td>
-                                                        <td><%=referanslar[i].projeYeri%></td>
-                                                        <td><%=referanslar[i].bayi%></td>
-                                                        <td><%=referanslar[i].kullanilanUrun%></td>
-                                                        <td><%=referanslar[i].aciklama%></td>
-                                                        <td>
-                                                            <%for(var j = 0; j < referanslar[i].fotograflar.length; j++){%>
-                                                                <a temp="<%=referanslar[i].fotograflar[j]._id%>" href="<%=referanslar[i].fotograflar[j].link%>" data-toggle="lightbox" data-title="Fotograf-<%=(i+1)%>">
-                                                                    <img src="<%=referanslar[i].fotograflar[j].link%>" alt="" class="img-responsive img-thumbnail" style="max-height:60px;">
-                                                                    <a class="resimSil" href="Javascript:void(0)" id="<%=referanslar[i].fotograflar[j]._id%>" style="margin-top:-5px; margin-left:-10px; position:absolute;" data-toggle="tooltip" data-title="Sil" data-placement="top"><i class="fa fa-times-circle" style="font-size:18px; color:#f56954"></i></a>
-                                                                </a>
-                                                            <%}%>
-                                                        </td>
-                                                        <td>
-                                                            <button class="btn btn-danger btn-sm sil " data-toggle="tooltip" data-placement="top" title="Sil"><i class="fa fa-trash-o"></i></button>
-                                                        </td>                                                
-                                                    </tr>
+                                                     <%for(var j = 0; j < referanslar[i].fotograflar.length; j++){%>
+                                                         <tr id="<%=referanslar[i]._id%>" temp="<%=referanslar[i].fotograflar[j]._id%>">
+                                                            <td class="text-center"><%=(i+1)%></td>
+                                                            <td><%=referanslar[i].projeYeri%></td>
+                                                            <td><%=referanslar[i].bayi%></td>
+                                                            <td><%=referanslar[i].kullanilanUrun%></td>
+                                                            <td><%=referanslar[i].aciklama%></td>
+                                                            <td>
+                                                                <a href="<%=referanslar[i].fotograflar[j].link%>" data-toggle="lightbox" data-title="Fotograf-<%=(i+1)%>">
+                                                                <img src="<%=referanslar[i].fotograflar[j].link%>" alt="" class="img-responsive img-thumbnail" style="max-height:40px;">
+                                                            </td>
+                                                            <td id="<%=referanslar[i].fotograflar[j]._id%>">
+                                                                <button class="btn btn-danger btn-flat btn-sm  resimSil" data-toggle="tooltip" data-placement="top" title="Goster"><i class="fa fa-trash-o"></i></button>
+                                                            </td>                                             
+                                                        </tr>
+                                                     <%}%>
                                                  <%}%>
                                             </tbody>
                                         </table>

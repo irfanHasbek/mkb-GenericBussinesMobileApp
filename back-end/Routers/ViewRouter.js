@@ -200,7 +200,13 @@ function HTMLRouter(){
         req.session.currentPage = '/html/referans_ekle';
         req.session.pageLabel = 'referans';
         req.session.LeftMenuCategory = 'mobil';
-        res.render('referans_ekle', {layout : false, session : req.session});
+        ReferansModeli.find({}, function(dbHatasi, listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state : false, data : dbHatasi});
+                return;  
+            }
+            res.render('referans_ekle', {layout : false, session : req.session, referanslar : listelenen});
+        });
     });
     router.get('/referans_listele', function(req, res){
         req.session.currentPage = '/html/referans_listele';
