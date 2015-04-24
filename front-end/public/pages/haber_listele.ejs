@@ -40,32 +40,37 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <table class="table table-bordered gorevler">
+                                        <table class="table table-bordered haberler">
                                             <tr style="border-bottom:3px solid #3c8dbc;">
                                                 <th class="text-center" style="width: 40px">#</th>
                                                 <th>Tarih</th>
                                                 <th>Haber Adı</th>
+                                                <th>Haber Linki</th>
                                                 <th>Açıklama</th>
                                                 <th>Resim</th>
+                                                <th>Degistiren</th>
                                                 <th class="text-center" style="width: 100px"></th>
                                             </tr>
                                             <tbody>
-                                                 <tr>
-                                                    <td class="text-center">1</td>
-                                                    <td>31.07.2014</td>
-                                                    <td>Başlık1</td>
-                                                    <td>İçerik1</td>
-                                                    <td>
-                                                        <a href="../img/bitkisel_yag.jpg" data-toggle="lightbox" data-title="Ürün Başlığı Buraya Yazılacak" data-footer="">
-                                                            <img src="../img/bitkisel_yag.jpg" alt="" class="img-responsive img-thumbnail" style="max-height:40px;">
-                                                        </a>
-                                                    
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Düzenle"><i class="fa fa-edit"></i></button>
-                                                        <button class="btn btn-danger btn-sm sil " data-toggle="tooltip" data-placement="top" title="Sil"><i class="fa fa-trash-o"></i></button>
-                                                    </td>                                                
-                                                </tr>
+                                                 <%for(var i = 0; i < haberler.length; i++){%>
+                                                     <tr id="<%=haberler[i]._id%>">
+                                                        <td class="text-center"><%=(i+1)%></td>
+                                                        <td><%=haberler[i].tarih%></td>
+                                                        <td><%=haberler[i].haberAdi%></td>
+                                                        <td><a href="<%=haberler[i].haberLinki%>">Link</a></td>
+                                                        <td><%=haberler[i].aciklama%></td>
+                                                        <td>
+                                                            <a href="<%=haberler[i].fotografLinki%>" data-toggle="lightbox" data-footer="">
+                                                                <img src="<%=haberler[i].fotografLinki%>" alt="" class="img-responsive img-thumbnail" style="max-height:40px;">
+                                                            </a>
+
+                                                        </td>
+                                                        <td><%=haberler[i].degistiren%></td>
+                                                        <td>
+                                                            <button class="btn btn-danger btn-sm sil " data-toggle="tooltip" data-placement="top" title="Sil"><i class="fa fa-trash-o"></i></button>
+                                                        </td>                                                
+                                                    </tr>
+                                                 <%}%>
                                             </tbody>
                                         </table>
                                     </div><!-- /.box-body -->
@@ -78,5 +83,6 @@
         </div><!-- ./wrapper -->
        <%include ../partial-pages/script.ejs%>
         <script src="../js/helper.js/Helper.js"></script>
+        <script src="../js/pages-js/haber_listele.js"></script>
     </body>
 </html>

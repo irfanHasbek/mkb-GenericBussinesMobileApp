@@ -225,8 +225,8 @@ function clearTable(tableId){
     $("#"+tableId+" tbody").empty();
 }
 
-function getTodayDate(){
-    var today = new Date();
+function organizeDate(my_date){
+    var today = new Date(my_date);
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();

@@ -32,7 +32,7 @@
                                                 <div class="col-md-3 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Tarih</label>
-                                                        <input name="tarih" type="date" class="form-control " required>
+                                                        <input id="inpTarih" name="tarih" type="date" class="form-control" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,7 +68,7 @@
                                                 </div>
                                             </div>
                                         </div><!-- /.box-body -->
-                                        <input id="inpFotografListesi" name="fotograflar" style="display:none;" value="null">
+                                        <input id="inpFotografListesi" name="fotografLinki" style="display:none;" value="null">
                                         <input name="firmaKodu" style="display:none;" value="<%=session.kullanici.firmaKodu%>">
                                         <input name="degistiren" style="display:none;" value="<%=session.kullanici.isim%> <%=session.kullanici.soyisim%>">
                                         <div class="box-footer">
@@ -94,7 +94,7 @@
               <form id="formResimYukle" action="/cokluyukle" enctype="multipart/form-data" method="post">
                   <div class="modal-body">
                      <label for="">Resim Yukle</label>
-                     <input name="resimler" type="file" class="form-control" multiple>
+                     <input name="resimler" type="file" class="form-control">
                   </div>
                   <div class="modal-footer">
                     <a class="btn btn-default" data-dismiss="modal">Kapat</a>
@@ -106,6 +106,6 @@
         </div>
         <%include ../partial-pages/script.ejs%>
         <script src="../js/helper.js/Helper.js"></script>
-        
+        <script src="../js/pages-js/haber_ekle.js"></script>
     </body>
 </html>

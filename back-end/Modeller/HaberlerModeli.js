@@ -5,7 +5,7 @@ var HaberModeli = new mongoose.Schema({
     aciklama : String,
     fotografLinki : String,
     haberLinki : String,
-    tarih : Date,
+    tarih : String,
     degistiren: String,
     firmaKodu:String
 });
