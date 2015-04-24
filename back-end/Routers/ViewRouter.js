@@ -10,6 +10,7 @@ var IletisimModeli=require("../Modeller/IletisimModeli");
 var YapilmisEgitimlerModeli=require("../Modeller/YapilmisEgitimlerModeli");
 var HaberlerModeli=require("../Modeller/HaberlerModeli");
 var EgitimTakvimiModeli=require("../Modeller/EgitimTakvimiModeli");
+
 function HTMLRouter(){
     var router = express.Router();
     router.get('/anasayfa_firma', function(req, res){
@@ -76,7 +77,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/dokuman_turu_ekle';
         req.session.pageLabel = 'dokumanlar';
         req.session.LeftMenuCategory = 'mobil';
-        DokumanModeli.find({}, function(dbHatasi, listelenen){
+        DokumanModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state : false, data : dbHatasi});
                 return;  
@@ -88,7 +89,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/dokuman_ekle';
         req.session.pageLabel = 'dokumanlar';
         req.session.LeftMenuCategory = 'mobil';
-        DokumanModeli.find({}, function(dbHatasi, listelenen){
+        DokumanModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state : false, data : dbHatasi});
                 return;  
@@ -101,7 +102,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/dokuman_listele';
         req.session.pageLabel = 'dokumanlar';
         req.session.LeftMenuCategory = 'mobil';
-        DokumanModeli.find({}, function(dbHatasi, listelenen){
+        DokumanModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state : false, data : dbHatasi});
                 return;  
@@ -114,7 +115,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/urun_grubu_ekle';
         req.session.pageLabel = 'urunler';
         req.session.LeftMenuCategory = 'mobil';
-        UrunModeli.find({}, function(dbHatasi, listelenen){
+        UrunModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state : false, data : dbHatasi});
                 return;  
@@ -126,7 +127,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/urun_ekle';
         req.session.pageLabel = 'urunler';
         req.session.LeftMenuCategory = 'mobil';
-        UrunModeli.find({}, function(dbHatasi, listelenen){
+        UrunModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state : false, data : dbHatasi});
                 return;  
@@ -138,7 +139,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/urun_listele';
         req.session.pageLabel = 'urunler';
         req.session.LeftMenuCategory = 'mobil';
-        UrunModeli.find({}, function(dbHatasi, listelenen){
+        UrunModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state : false, data : dbHatasi});
                 return;  
@@ -157,7 +158,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/egitim_takvimi_listele';
         req.session.pageLabel = 'egitim_takvimi';
         req.session.LeftMenuCategory = 'mobil';
-        EgitimTakvimiModeli.find({},function(dbHatasi,listelenen){
+        EgitimTakvimiModeli.find({firmaKodu : req.session.kullanici.firmaKodu},function(dbHatasi,listelenen){
             if(dbHatasi||!listelenen){
                 res.send({state:false,data:dbHatasi});
                 return;
@@ -171,7 +172,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/fiyat_grubu_ekle';
         req.session.pageLabel = 'fiyat';
         req.session.LeftMenuCategory = 'mobil';
-        FiyatModeli.find({}, function(dbHatasi, listelenen){
+        FiyatModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state : false, data : dbHatasi});
                 return;  
@@ -183,7 +184,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/fiyat_ekle';
         req.session.pageLabel = 'fiyat';
         req.session.LeftMenuCategory = 'mobil';
-        FiyatModeli.find({}, function(dbHatasi, listelenen){
+        FiyatModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state : false, data : dbHatasi});
                 return;  
@@ -195,7 +196,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/fiyat_listele';
         req.session.pageLabel = 'fiyat';
         req.session.LeftMenuCategory = 'mobil';
-        FiyatModeli.find({}, function(dbHatasi, listelenen){
+        FiyatModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state : false, data : dbHatasi});
                 return;  
@@ -209,7 +210,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/referans_ekle';
         req.session.pageLabel = 'referans';
         req.session.LeftMenuCategory = 'mobil';
-        ReferansModeli.find({}, function(dbHatasi, listelenen){
+        ReferansModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state : false, data : dbHatasi});
                 return;  
@@ -221,7 +222,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/referans_listele';
         req.session.pageLabel = 'referans';
         req.session.LeftMenuCategory = 'mobil';
-        ReferansModeli.find({}, function(dbHatasi, listelenen){
+        ReferansModeli.find({firmaKodu : req.session.kullanici.firmaKodu}, function(dbHatasi, listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state : false, data : dbHatasi});
                 return;  
@@ -241,7 +242,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/yapilmis_egitim_listele';
         req.session.pageLabel = 'yapilmis_egitim';
         req.session.LeftMenuCategory = 'mobil';
-        YapilmisEgitimlerModeli.find({},function(dbHatasi,listelenen){
+        YapilmisEgitimlerModeli.find({firmaKodu : req.session.kullanici.firmaKodu},function(dbHatasi,listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state:false,data:dbHatasi});
                 return;
@@ -261,7 +262,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/haber_listele';
         req.session.pageLabel = 'haberler';
         req.session.LeftMenuCategory = 'mobil';
-        HaberlerModeli.find({},function(dbHatasi,listelenen){
+        HaberlerModeli.find({firmaKodu : req.session.kullanici.firmaKodu},function(dbHatasi,listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state:false,data:dbHatasi});
                 return;
@@ -281,7 +282,7 @@ function HTMLRouter(){
         req.session.currentPage = '/html/iletisim_listele';
         req.session.pageLabel = 'iletisim';
         req.session.LeftMenuCategory = 'mobil';
-        IletisimModeli.find({},function(dbHatasi,listelenen){
+        IletisimModeli.find({firmaKodu : req.session.kullanici.firmaKodu},function(dbHatasi,listelenen){
             if(dbHatasi || !listelenen){
                 res.send({state:false,data:dbHatasi});
                 return;

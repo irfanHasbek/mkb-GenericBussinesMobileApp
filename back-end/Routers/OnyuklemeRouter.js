@@ -1,6 +1,7 @@
 var express = require('express');
 var KullaniciModeli = require('../Modeller/KullaniciModeli');
 var RolTanimiModeli = require('../Modeller/RolTanimiModeli');
+var VersionModeli = require('../Modeller/VersionModel');
 
 function yoneticiOlustur(){
     return {
@@ -28,6 +29,13 @@ function rolOlustur(){
     }
 }
 
+function versionOlustur(firma){
+    return {
+        mobilVersion : "1",
+        firmaKodu:firma   
+    }
+}
+
 function OnyuklmemeRouter(){
     var router = express.Router();
     router.get('/yoneticiekle', function(req, res){
@@ -52,6 +60,23 @@ function OnyuklmemeRouter(){
                 res.send({state : true, data : eklenen});
             }
         });
+    });
+    
+    router.get('/firmaversionekle', function(req, res){
+        var firma = req.param('firma');
+        if(firma != ''){
+            new VersionModeli(versionOlustur(firma)).save(function(dbHatasi, eklenen){
+                if(dbHatasi) {
+                    res.send({state : false, data : dbHatasi});
+                    return;
+                }
+                else {
+                    res.send({state : true, data : eklenen});
+                }
+            }); 
+        }else{
+            res.send("Firma unvani bulunamadi.");
+        }   
     });
     
     return router;
