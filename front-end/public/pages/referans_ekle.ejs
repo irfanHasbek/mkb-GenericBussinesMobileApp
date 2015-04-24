@@ -60,7 +60,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <input id="inpFotografListesi" name="fotograflar" style="display:none;">
+                                            <input id="inpFotografListesi" name="fotograflar" style="display:none;" value="null">
                                             <input name="firmaKodu" style="display:none;" value="<%=session.kullanici.firmaKodu%>">
                                             <input name="degistiren" style="display:none;" value="<%=session.kullanici.isim%> <%=session.kullanici.soyisim%>">
                                             <div class="row">
@@ -73,11 +73,48 @@
                                         </div><!-- /.box-body -->
                                         <div class="box-footer">
                                             <div style="text-align:center">
-                                                <button type="submit" class="btn btn-primary btn-flat">Kaydet</button>
+                                                <button id="btnReferansSubmit" type="submit" class="btn btn-primary btn-flat">Kaydet</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div><!-- /.box -->
+                                <div class="row">
+                                    <div class="">
+                                        <div class="col-md-12">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <h3 class="box-title">Referans Listeleme</h3>
+                                                </div><!-- /.box-header -->
+                                                <div class="box-body">
+                                                    <table class="table table-bordered referanslar">
+                                                        <tr style="border-bottom:3px solid #3c8dbc;">
+                                                            <th class="text-center" style="width: 40px">#</th>
+                                                            <th>Proje Yeri</th>
+                                                            <th>Bayi</th>
+                                                            <th>Kullanilan Urun</th>
+                                                            <th>Aciklama</th>
+                                                            <th>Islem Yapan</th>
+                                                            <th class="text-center" style="width: 40px"></th>
+                                                        </tr>
+                                                        <tbody>
+                                                             <%for(var i = 0; i < referanslar.length; i++){%>
+                                                                 <tr id="<%=referanslar[i]._id%>">
+                                                                    <td class="text-center"><%=i+1%>.</td>
+                                                                    <td><%=referanslar[i].projeYeri%></td>
+                                                                    <td><%=referanslar[i].bayi%></td>
+                                                                    <td><%=referanslar[i].kullanilanUrun%></td>
+                                                                    <td><%=referanslar[i].aciklama%></td>
+                                                                    <td><%=referanslar[i].degistiren%></td>
+                                                                    <td><button class="btn btn-danger btn-sm sil"><i class="fa fa-trash-o"></i></td>
+                                                                </tr>
+                                                             <%}%>
+                                                        </tbody>
+                                                    </table>
+                                                </div><!-- /.box-body -->
+                                            </div><!-- /.box -->
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

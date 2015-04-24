@@ -2,6 +2,13 @@ function clickHandlers(){
     $('#btnSubmitModal').on('click', function(){
         $('#uploadModal').modal('hide');
     });
+    $("#btnReferansSubmit").on('click', function(e){
+        if($('#inpFotografListesi').val() == "null"){
+            e.preventDefault();
+            alertify.error('Fotograf yuklemeden ekleme yapamazsiniz!');
+        }
+    });
+    removeFromTable('referanslar',"/referanslar/sil",function(id){});
 }
 
 function formHandlers(){
@@ -26,8 +33,19 @@ function formHandlers(){
             console.log(JSON.stringify(data));
             return;
         }
-        $('#formResimListesi').submit();
         alertify.success('Basariyla kaydedildi.');
+        var count= $(".referanslar tbody tr").size();
+        var tr=$("<tr id="+data.data._id+"></>");
+        var td1=$("<td class='text-center'>"+count+".</td>");
+        var td2=$("<td>"+data.data.projeYeri+"</td>");
+        var td3=$("<td>"+data.data.bayi+"</td>");
+        var td4=$("<td>"+data.data.kullanilanUrun+"</td>");
+        var td5=$("<td>"+data.data.aciklama+"</td>");
+        var td6=$("<td>"+data.data.degistiren+"</td>");
+        var btnSil='<button class="btn btn-danger btn-sm sil"><i class="fa fa-trash-o"></i></button>';
+        var td7=$("<td>"+btnSil+"</td>");
+        tr.append(td1);tr.append(td2);tr.append(td3);tr.append(td4);tr.append(td5);tr.append(td6);tr.append(td7);
+        $(".referanslar tbody").last().append(tr);
         $('input[type=text]').val('');
         $('input[type=file]').val('');
     });
