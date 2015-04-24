@@ -7,7 +7,7 @@ var UrunModeli = require('../Modeller/UrunModeli');
 var FiyatModeli= require("../Modeller/FiyatModeli");
 var ReferansModeli= require("../Modeller/ReferansModeli");
 var IletisimModeli=require("../Modeller/IletisimModeli");
-
+var YapilmisEgitimlerModeli=require("../Modeller/YapilmisEgitimlerModeli");
 function HTMLRouter(){
     var router = express.Router();
     router.get('/anasayfa_firma', function(req, res){
@@ -226,7 +226,13 @@ function HTMLRouter(){
         req.session.currentPage = '/html/yapilmis_egitim_listele';
         req.session.pageLabel = 'yapilmis_egitim';
         req.session.LeftMenuCategory = 'mobil';
-        res.render('yapilmis_egitim_listele', {layout : false, session : req.session});
+        YapilmisEgitimlerModeli.find({},function(dbHatasi,listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state:false,data:dbHatasi});
+                return;
+            }
+        res.render('yapilmis_egitim_listele', {layout : false, session : req.session,yapilmisEgitimler:listelenen});
+        });
     });
     //Haberler 
     
