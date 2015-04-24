@@ -23,6 +23,7 @@ function formHandlers(){
         $('input[type=text]').val('');
         $('input[type=file]').val('');
         $("textarea").val("");
+        $("input[type='date']").val("gg.aa.yyyy");
     });
 }
 

@@ -72,7 +72,8 @@ mongoose.connect(config.dbpath, function(err){
     createCrudRouter(app, './back-end/Modeller/IletisimModeli', '/iletisim');
     createCrudRouter(app, './back-end/Modeller/YapilmisEgitimlerModeli', '/yapilmis_egitimler');
     createCrudRouter(app, './back-end/Modeller/HaberlerModeli', '/haberler');
-
+    createCrudRouter(app, './back-end/Modeller/EgitimTakvimiModeli', '/egitim_takvimi');
+    
     app.get('/', function(req, res){
         res.render('giris'); 
     });

@@ -9,7 +9,7 @@ var ReferansModeli= require("../Modeller/ReferansModeli");
 var IletisimModeli=require("../Modeller/IletisimModeli");
 var YapilmisEgitimlerModeli=require("../Modeller/YapilmisEgitimlerModeli");
 var HaberlerModeli=require("../Modeller/HaberlerModeli");
-
+var EgitimTakvimiModeli=require("../Modeller/EgitimTakvimiModeli");
 function HTMLRouter(){
     var router = express.Router();
     router.get('/anasayfa_firma', function(req, res){
@@ -157,7 +157,13 @@ function HTMLRouter(){
         req.session.currentPage = '/html/egitim_takvimi_listele';
         req.session.pageLabel = 'egitim_takvimi';
         req.session.LeftMenuCategory = 'mobil';
-        res.render('egitim_takvimi_listele', {layout : false, session : req.session});
+        EgitimTakvimiModeli.find({},function(dbHatasi,listelenen){
+            if(dbHatasi||!listelenen){
+                res.send({state:false,data:dbHatasi});
+                return;
+            }
+           res.render('egitim_takvimi_listele', {layout : false, session : req.session,egitimTakvimi:listelenen}); 
+        });
     });
     
     //Fiyat 
