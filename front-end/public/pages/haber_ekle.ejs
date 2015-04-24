@@ -26,13 +26,13 @@
                             <div class="col-md-12">
                                 <div class="box box-info">
                                     <!-- form start -->
-                                    <form  role="form" >
+                                    <form id="formHaberEkle" role="form" action="/haberler/ekle" method="post">
                                         <div class="box-body">
                                            <div class="row">
                                                 <div class="col-md-3 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Tarih</label>
-                                                        <input type="date" class="form-control "  required>
+                                                        <input name="tarih" type="date" class="form-control " required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -40,7 +40,15 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Haber Adı</label>
-                                                        <input type="text" class="form-control " placeholder="Haber Adı Giriniz"  required>
+                                                        <input name="haberAdi" type="text" class="form-control " placeholder="Haber Adı Giriniz"  required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="form-group ">
+                                                        <label>Haber Linki</label>
+                                                        <input name="haberLinki" type="text" class="form-control " placeholder="Haber Adı Giriniz"  required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -48,29 +56,24 @@
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="form-group ">
                                                         <label>Açıklama</label>
-                                                        <textarea rows="3" class="form-control" style="resize:none" required placeholder="Açıklama Giriniz"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-                                                    <div class="form-group ">
-                                                        <label>Resim Yükle</label>
-                                                        <input type="file" class="form-control btn-default" required>
+                                                        <textarea name="aciklama" rows="3" class="form-control" style="resize:none" required placeholder="Açıklama Giriniz"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
                                                     <div class="pull-right ">
-                                                        <button class="btn btn-info pull-left">Resim Yükle </button>
+                                                        <button class="btn btn-info pull-left" data-toggle="modal" data-target="#uploadModal">Resim Yükle</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div><!-- /.box-body -->
+                                        <input id="inpFotografListesi" name="fotograflar" style="display:none;" value="null">
+                                        <input name="firmaKodu" style="display:none;" value="<%=session.kullanici.firmaKodu%>">
+                                        <input name="degistiren" style="display:none;" value="<%=session.kullanici.isim%> <%=session.kullanici.soyisim%>">
                                         <div class="box-footer">
                                             <div style="text-align:center">
-                                                <button type="submit" class="btn btn-primary btn-flat">Kaydet</button>
+                                                <button id="btnReferansSubmit" type="submit" class="btn btn-primary btn-flat">Kaydet</button>
                                             </div>
                                         </div>
                                     </form>
@@ -81,6 +84,26 @@
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Dosya yukle</h4>
+              </div>
+              <form id="formResimYukle" action="/cokluyukle" enctype="multipart/form-data" method="post">
+                  <div class="modal-body">
+                     <label for="">Resim Yukle</label>
+                     <input name="resimler" type="file" class="form-control" multiple>
+                  </div>
+                  <div class="modal-footer">
+                    <a class="btn btn-default" data-dismiss="modal">Kapat</a>
+                    <button id="btnSubmitModal" type="submit" class="btn btn-primary">Yukle</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
         <%include ../partial-pages/script.ejs%>
         <script src="../js/helper.js/Helper.js"></script>
         

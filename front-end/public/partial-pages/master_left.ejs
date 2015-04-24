@@ -100,7 +100,7 @@
                             <li><a href="/html/referans_listele"><i class="fa fa-angle-double-right"></i> Referans Listele</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview <%if(session.pageLabel == 'yapilmis_egitim'){%> active <%}%>">
                         <a href="#">
                             <i class="fa fa-suitcase"></i>
                             <span>Yapılmış Eğitimler</span>
@@ -111,7 +111,7 @@
                             <li><a href="/html/yapilmis_egitim_listele"><i class="fa fa-angle-double-right"></i> Yapılmış Eğitim Listele</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview <%if(session.pageLabel == 'haberler'){%> active <%}%>">
                         <a href="#">
                             <i class="fa fa-envelope-o"></i>
                             <span>Haberler</span>

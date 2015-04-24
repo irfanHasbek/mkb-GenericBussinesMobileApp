@@ -8,6 +8,8 @@ var FiyatModeli= require("../Modeller/FiyatModeli");
 var ReferansModeli= require("../Modeller/ReferansModeli");
 var IletisimModeli=require("../Modeller/IletisimModeli");
 var YapilmisEgitimlerModeli=require("../Modeller/YapilmisEgitimlerModeli");
+var HaberlerModeli=require("../Modeller/HaberlerModeli");
+
 function HTMLRouter(){
     var router = express.Router();
     router.get('/anasayfa_firma', function(req, res){
@@ -253,7 +255,13 @@ function HTMLRouter(){
         req.session.currentPage = '/html/haber_listele';
         req.session.pageLabel = 'haberler';
         req.session.LeftMenuCategory = 'mobil';
-        res.render('haber_listele', {layout : false, session : req.session});
+        HaberlerModeli.find({},function(dbHatasi,listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state:false,data:dbHatasi});
+                return;
+            }
+            res.render('haber_listele', {layout : false, session : req.session,haberler:listelenen});
+        });
     });
     //İletişim 
     
