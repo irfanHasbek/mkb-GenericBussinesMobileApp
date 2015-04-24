@@ -22,6 +22,7 @@ function formHandlers(){
         alertify.success('Basariyla kaydedildi.');
         $('input[type=text]').val('');
         $('input[type=file]').val('');
+        $("textarea").val("");
     });
 }
 

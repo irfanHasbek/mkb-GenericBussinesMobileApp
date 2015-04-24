@@ -13,6 +13,7 @@ function HTMLRouter(){
     router.get('/anasayfa_firma', function(req, res){
         req.session.currentPage = '/html/anasayfa_firma';
         req.session.pageLabel = 'anasayfa';
+        req.session.LeftMenuCategory = 'anasayfa';
         res.render('anasayfa_firma', {layout : false, session : req.session});
     });
     
