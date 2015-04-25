@@ -99,7 +99,7 @@ mongoose.connect(config.dbpath, function(err){
         }
     }),function(req, res){
         //req.protocol
-        res.send({state : true, dosyaAdi : req['files'].pdfler.originalname, dosyaLinki : 'http://192.168.1.22' + ':3000' + '/yuklemeler/pdfler/' + req['files'].pdfler.name});
+        res.send({state : true, dosyaAdi : req['files'].pdfler.originalname, dosyaLinki : config.host + '/yuklemeler/pdfler/' + req['files'].pdfler.name});
     });
     
     //coklu resim yukleme
@@ -120,7 +120,7 @@ mongoose.connect(config.dbpath, function(err){
         }
     }),function(req, res){
         //req.protocol
-        res.send({state : true, fotografListesi : req['files'], host : "http://localhost:3000/"});
+        res.send({state : true, fotografListesi : req['files'], host : config.host});
     });
     
     if (!module.parent) {

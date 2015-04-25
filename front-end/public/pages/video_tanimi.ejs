@@ -37,7 +37,7 @@
                                                     <br>
                                                     <div class="form-group">
                                                         <label>Video Servisi</label>
-                                                        <select id="slctSupporter" name="supporter" class="form-control" required>
+                                                        <select id="slctSupporter" name="videoSaglayici" class="form-control" required>
                                                             <option value="youtube">Youtube</option>
                                                         </select>
                                                     </div>
@@ -48,6 +48,11 @@
                                                         <label>Youtube kanal ID</label>
                                                         <input id="inpChannelId" name="videoLinki" class="form-control " readonly value="Belirlenmedi">
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label>Akif</label>
+                                                        <input id="inpAktif" type="checkbox" class="form-control ">
+                                                    </div>
+                                                    <input id="inpGizliAktif" name="aktif" style="display:none;" value="false">
                                                     <input name="firmaKodu" style="display:none;" value="<%=session.kullanici.firmaKodu%>">
                                                     <input name="degistiren" style="display:none;" value="<%=session.kullanici.isim%> <%=session.kullanici.soyisim%>">
                                                 </div>
@@ -74,16 +79,18 @@
                                                             <th>Video Saglayici</th>
                                                             <th>Kanal Id</th>
                                                             <th>İşlemi Yapan</th>
+                                                            <th>Aktif</th>
                                                             <th class="text-center" style="width: 40px"></th>
                                                         </tr>
                                                         <tbody>
                                                              <%for(var i = 0; i < videolar.length; i++){%>
                                                                  <tr id="<%=videolar[i]._id%>">
                                                                     <td class="text-center"><%=i+1%>.</td>
-                                                                    <td><%=videolar[i].supporter%></td>
+                                                                    <td><%=videolar[i].videoSaglayici%></td>
                                                                     <td><%=videolar[i].videoLinki%></td>
                                                                     <td><%=videolar[i].degistiren%></td>
-                                                                    <td><button class="btn btn-danger btn-sm sil"><i class="fa fa-trash-o"></i></td>                                                
+                                                                    <td class="text-center"><%if(videolar[i].aktif == "false"){%><i style="color:#911E29;" class="fa fa-times"></i><%}else{%><i style="color:#0DA611;" class="fa fa-check"></i><%}%></td>
+                                                                    <td><button class="btn btn-danger btn-sm sil"><i class="fa fa-trash-o"></i></td>
                                                                 </tr>
                                                              <%}%>
                                                         </tbody>

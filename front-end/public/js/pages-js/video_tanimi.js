@@ -34,12 +34,18 @@ function formHandlers(){
         var count= $(".videolar tbody tr").size();
         var tr=$("<tr id="+data.data._id+"></>");
         var td1=$("<td class='text-center'>"+count+".</td>");
-        var td2=$("<td>"+data.data.supporter+"</td>");
+        var td2=$("<td>"+data.data.videoSaglayici+"</td>");
         var td3=$("<td>"+data.data.videoLinki+"</td>");
+        var td5 = '';
+        if(data.data.aktif == "false"){
+            td5=$('<td class="text-center"><i style="color:#911E29;" class="fa fa-times"></i></td>');
+        }else{
+            td5 = $('<td class="text-center"><i style="color:#0DA611;" class="fa fa-check"></i></td>'); 
+        }
         var td4=$("<td>"+data.data.degistiren+"</td>");
         var btnSil='<button class="btn btn-danger btn-sm sil"><i class="fa fa-trash-o"></i></button>';
-        var td5=$("<td>"+btnSil+"</td>");
-        tr.append(td1);tr.append(td2);tr.append(td3);tr.append(td4);tr.append(td5);
+        var td6=$("<td>"+btnSil+"</td>");
+        tr.append(td1);tr.append(td2);tr.append(td3);tr.append(td4);tr.append(td5);tr.append(td6);
         $(".videolar tbody").last().append(tr);
         $("input[type='text']").val("");
         $("#inpChannelId").val("Belirlenmedi");
@@ -47,5 +53,11 @@ function formHandlers(){
 }
 
 function otherScripts(){
-    
+    $('#inpAktif').change(function(){
+        if(this.checked == true){
+            $("#inpGizliAktif").val("true");
+        }else{
+            $("#inpGizliAktif").val("false");
+        }
+    });
 }
