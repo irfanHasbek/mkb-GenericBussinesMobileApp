@@ -26,7 +26,7 @@ function CRUD(model){
     });
     
     router.post('/ara', function(req, res) {
-        var aramaKriteri = req.body.aramaKriteri;
+        var aramaKriteri = JSON.stringify(req.body);
         console.log('//--------------//');
         console.log('aramaKriteri : ' + aramaKriteri);
         console.log('req url : ' + req.originalUrl);

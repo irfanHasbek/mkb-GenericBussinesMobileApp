@@ -46,7 +46,7 @@ mongoose.connect(config.dbpath, function(err){
     app.use(function(req, res, next){
         //to do 
         var urlList = req.originalUrl.split('/');
-        if(req.session.giris || req.originalUrl == '/hesap/giris' || req.originalUrl == '/onyukleme/yoneticiekle' || req.originalUrl.indexOf('/listele') > 0){
+        if(req.session.giris || req.originalUrl == '/hesap/giris' || req.originalUrl == '/onyukleme/yoneticiekle' || req.originalUrl.indexOf('/listele') > 0 || req.originalUrl.indexOf('/ara') > 0){
             console.log('sessionCheck is true');
             next();
         }else{
