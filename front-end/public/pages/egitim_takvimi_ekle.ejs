@@ -27,6 +27,8 @@
                                 <div class="box box-info">
                                     <!-- form start -->
                                     <form id="frmEgitimTakvimi" role="form" method="post" action="/egitim_takvimi/ekle" >
+                                       <input name="firmaKodu" style="display:none;" value="<%=session.kullanici.firmaKodu%>">
+                                       <input name="degistiren" style="display:none;" value="<%=session.kullanici.isim%> <%=session.kullanici.soyisim%>">
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-md-3 col-md-offset-1">

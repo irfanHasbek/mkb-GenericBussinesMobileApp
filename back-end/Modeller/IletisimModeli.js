@@ -7,7 +7,9 @@ var IletisimModeli = new mongoose.Schema({
     telefon2: String,
     gsm:String,
     fax:String,
-    adres:String
+    adres:String,
+    degistiren:String,
+    firmaKodu:String
 });
 
 module.exports = mongoose.model('iletisim', IletisimModeli);

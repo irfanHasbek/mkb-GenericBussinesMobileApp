@@ -28,6 +28,7 @@ function formHandlers(){
             //console.log(JSON.stringify(data));
             return;
         }
+        console.log(data);
         alertify.success('Basariyla kaydedildi.');
     });
 }
