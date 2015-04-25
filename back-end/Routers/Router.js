@@ -5,8 +5,32 @@ function CRUD(model){
     var router = express.Router();
     router.post('/listele', function(req, res) {
         var firmaKodu = req.body.firmaKodu;
+        console.log('//--------------//');
         console.log('firmaKodu : ' + firmaKodu);
+        console.log('req url : ' + req.originalUrl);
         model.find({firmaKodu : firmaKodu}, function(dbHatasi, listelenen) {
+            if(dbHatasi) {
+                res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
+                res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
+                res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
+                res.send({state : false, data : dbHatasi});
+                return;
+            }
+            else{
+                res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
+                res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
+                res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
+                res.send({state : true, data : listelenen});
+            }
+        });
+    });
+    
+    router.post('/ara', function(req, res) {
+        var aramaKriteri = req.body.aramaKriteri;
+        console.log('//--------------//');
+        console.log('aramaKriteri : ' + aramaKriteri);
+        console.log('req url : ' + req.originalUrl);
+        model.find(aramaKriteri, function(dbHatasi, listelenen) {
             if(dbHatasi) {
                 res.header('Access-Control-Allow-Origin', "*");     // TODO - Make this more secure!!
                 res.header('Access-Control-Allow-Methods', 'GET,PUT,POST');
