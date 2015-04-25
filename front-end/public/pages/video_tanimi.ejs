@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%include ../partial-pages/css.ejs%>
+    </head>
+    <body class="skin-blue">
+       <%include ../partial-pages/master_head.ejs%>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+           <%include ../partial-pages/master_left.ejs%>
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">                
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1 style="font-size:22px;">
+                        Youtube Video Ekleme Ekranı
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-mobile-phone"></i> Mobil Uygulamalar</a></li>
+                        <li class="active">Youtube Video Ekleme</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <div class="box box-info">
+                                    <!-- form start -->
+                                    <form id="formVideoEkle" role="form" method="post" action="/video_tanimi/ekle" >
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <div class="form-grup">
+                                                        <label>Kanal linki</label>
+                                                        <input id="inpUrl" type="text" class="form-control " placeholder="Kanala girin ve URL buraya yapistirin.">    
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group">
+                                                        <label>Video Servisi</label>
+                                                        <select id="slctSupporter" name="supporter" class="form-control" required>
+                                                            <option value="youtube">Youtube</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button id="btnIdBul" class="btn btn-info">ID yi bul</button>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Youtube kanal ID</label>
+                                                        <input id="inpChannelId" name="videoLinki" class="form-control " readonly value="Belirlenmedi">
+                                                    </div>
+                                                    <input name="firmaKodu" style="display:none;" value="<%=session.kullanici.firmaKodu%>">
+                                                    <input name="degistiren" style="display:none;" value="<%=session.kullanici.isim%> <%=session.kullanici.soyisim%>">
+                                                </div>
+                                            </div>
+                                        </div><!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <div style="text-align:center">
+                                                <button id="btnYoutubeIdKaydet" type="submit" class="btn btn-primary btn-flat">Kaydet</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!-- /.box -->
+                                <div class="row">
+                                    <div class="">
+                                        <div class="col-md-12">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <h3 class="box-title">Video Saglayici Listeleme</h3>
+                                                </div><!-- /.box-header -->
+                                                <div class="box-body">
+                                                    <table class="table table-bordered videolar">
+                                                        <tr style="border-bottom:3px solid #3c8dbc;">
+                                                            <th class="text-center" style="width: 40px">#</th>
+                                                            <th>Video Saglayici</th>
+                                                            <th>Kanal Id</th>
+                                                            <th>İşlemi Yapan</th>
+                                                            <th class="text-center" style="width: 40px"></th>
+                                                        </tr>
+                                                        <tbody>
+                                                             <%for(var i = 0; i < videolar.length; i++){%>
+                                                                 <tr id="<%=videolar[i]._id%>">
+                                                                    <td class="text-center"><%=i+1%>.</td>
+                                                                    <td><%=videolar[i].supporter%></td>
+                                                                    <td><%=videolar[i].videoLinki%></td>
+                                                                    <td><%=videolar[i].degistiren%></td>
+                                                                    <td><button class="btn btn-danger btn-sm sil"><i class="fa fa-trash-o"></i></td>                                                
+                                                                </tr>
+                                                             <%}%>
+                                                        </tbody>
+                                                    </table>
+                                                </div><!-- /.box-body -->
+                                            </div><!-- /.box -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+        <%include ../partial-pages/script.ejs%>
+        <script src="../js/helper.js/Helper.js"></script>
+        <script src="../js/pages-js/video_tanimi.js"></script>
+    </body>
+</html>

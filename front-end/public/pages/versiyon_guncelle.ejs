@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%include ../partial-pages/css.ejs%>
+    </head>
+    <body class="skin-blue">
+       <%include ../partial-pages/master_head.ejs%>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+           <%include ../partial-pages/master_left.ejs%>
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">                
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1 style="font-size:22px;">
+                        Versiyon Güncelleme Ekranı
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-mobile-phone"></i> Mobil Uygulamalar</a></li>
+                        <li class="active">Versiyon Güncelleme</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <div class="box box-info">
+                                    <!-- form start -->
+                                    <form id="formVersiyonGuncelle" role="form" method="post" action="/versiyon/guncelle" >
+                                       <input name="firmaKodu" style="display:none;" value="<%=session.kullanici.firmaKodu%>">
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-3 col-md-offset-2">
+                                                    <div class="form-group ">
+                                                        <label>Güncel Versiyon</label>
+                                                        <input class="form-control "  readonly value="<%=versiyon.mobilVersion%>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-md-offset-2">
+                                                    <div class="form-group ">
+                                                        <label>Yeni Versiyon</label>
+                                                        <input class="form-control " readonly value="<%=(parseFloat(versiyon.mobilVersion) + 1)%>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <div style="text-align:center">
+                                                <button id="btnVersiyonGuncelle" class="btn btn-primary btn-flat">Güncelle</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!-- /.box -->
+                            </div>
+                        </div>
+                    </div>
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+        <%include ../partial-pages/script.ejs%>
+        <script src="../js/helper.js/Helper.js"></script>
+        <script src="../js/pages-js/versiyon_guncelle.js"></script>
+    </body>
+</html>

@@ -61,6 +61,8 @@ mongoose.connect(config.dbpath, function(err){
     assignRouter(app, './back-end/Routers/HesapRouter', '/hesap');
     //Html view router
     assignRouter(app, './back-end/Routers/ViewRouter', '/html');
+    //Versiyon router
+    assignRouter(app, './back-end/Routers/VersiyonRouter', '/versiyon');
     //Kullanici crud operasyon
     createCrudRouter(app, './back-end/Modeller/KullaniciModeli', '/kullanici');
     createCrudRouter(app, './back-end/Modeller/RolTanimiModeli', '/rol_tanimi');
@@ -73,7 +75,7 @@ mongoose.connect(config.dbpath, function(err){
     createCrudRouter(app, './back-end/Modeller/YapilmisEgitimlerModeli', '/yapilmis_egitimler');
     createCrudRouter(app, './back-end/Modeller/HaberlerModeli', '/haberler');
     createCrudRouter(app, './back-end/Modeller/EgitimTakvimiModeli', '/egitim_takvimi');
-    createCrudRouter(app, './back-end/Modeller/VersionModel', '/version');
+    createCrudRouter(app, './back-end/Modeller/VideoModeli', '/video_tanimi');
     
     app.get('/', function(req, res){
         res.render('giris'); 

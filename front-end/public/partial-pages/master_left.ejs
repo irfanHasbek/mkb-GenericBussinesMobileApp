@@ -133,6 +133,21 @@
                             <li><a href="/html/iletisim_listele"><i class="fa fa-angle-double-right"></i> İletişim Listele</a></li>
                         </ul>
                     </li>
+                    <li class="treeview <%if(session.pageLabel == 'video'){%> active <%}%>">
+                        <a href="#">
+                            <i class="fa fa-youtube-play"></i>
+                            <span>Video Yönetim</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/html/video_tanimi"><i class="fa fa-angle-double-right"></i> Video Tanimi</a></li>
+                        </ul>
+                    </li>
+                    <li class=" <%if(session.pageLabel == 'versiyon'){%> active <%}%>">
+                        <a href="/html/versiyon_guncelle">
+                            <i class="fa fa-github-alt"></i> <span>Versiyon Güncelle</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

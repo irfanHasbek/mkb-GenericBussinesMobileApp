@@ -10,6 +10,8 @@ var IletisimModeli=require("../Modeller/IletisimModeli");
 var YapilmisEgitimlerModeli=require("../Modeller/YapilmisEgitimlerModeli");
 var HaberlerModeli=require("../Modeller/HaberlerModeli");
 var EgitimTakvimiModeli=require("../Modeller/EgitimTakvimiModeli");
+var VideoModeli=require("../Modeller/VideoModeli");
+var VersionModeli = require('../Modeller/VersionModel');
 
 function HTMLRouter(){
     var router = express.Router();
@@ -278,6 +280,7 @@ function HTMLRouter(){
         req.session.LeftMenuCategory = 'mobil';
         res.render('iletisim_ekle', {layout : false, session : req.session});
     });
+    
     router.get('/iletisim_listele', function(req, res){
         req.session.currentPage = '/html/iletisim_listele';
         req.session.pageLabel = 'iletisim';
@@ -288,6 +291,35 @@ function HTMLRouter(){
                 return;
             }
             res.render('iletisim_listele', {layout : false, session : req.session,iletisimListesi:listelenen});
+        });
+    });
+    
+    //Videolar
+    router.get('/video_tanimi', function(req, res){
+        req.session.currentPage = '/html/video_tanimi';
+        req.session.pageLabel = 'video';
+        req.session.LeftMenuCategory = 'mobil';
+        VideoModeli.find({firmaKodu : req.session.kullanici.firmaKodu},function(dbHatasi,listelenen){
+            if(dbHatasi || !listelenen){
+                res.send({state:false,data:dbHatasi});
+                return;
+            }
+            res.render('video_tanimi', {layout : false, session : req.session,videolar:listelenen});
+        });
+    });
+    
+    //Versiyon
+    router.get('/versiyon_guncelle', function(req, res){
+        req.session.currentPage = '/html/versiyon_guncelle';
+        req.session.pageLabel = 'versiyon';
+        req.session.LeftMenuCategory = 'mobil';
+        VersionModeli.findOne({firmaKodu : req.session.kullanici.firmaKodu}, function(dbVersionHatasi, bulunan){
+            if(dbVersionHatasi){
+                console.log(dbVersionHatasi);
+                res.send({state : false, data : dbVersionHatasi});
+                return;
+            }
+            res.render('versiyon_guncelle', {layout : false, session : req.session, versiyon : bulunan});
         });
     });
     

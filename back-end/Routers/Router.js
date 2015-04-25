@@ -31,22 +31,7 @@ function CRUD(model){
                 return;
             }
             else {
-                VersionModeli.findOne({firmaKodu : req.session.kullanici.firmaKodu}, function(dbVersionHatasi, bulunan){
-                    if(dbVersionHatasi){
-                        console.log(dbVersionHatasi);
-                        res.send({state : false, data : dbVersionHatasi});
-                        return;
-                    }
-                    var version = parseFloat(bulunan.mobilVersion);
-                    bulunan.mobilVersion = ++version;
-                    bulunan.save(function(dbHatasiKayit, kaydedilen){
-                        if(dbHatasiKayit){
-                            res.send({state : false, data : dbHatasiKayit});
-                            return;
-                        }
-                        res.send({state : true, data : eklenen});
-                    });
-                });
+                res.send({state : true, data : eklenen});
             }
         });
     });
@@ -62,22 +47,7 @@ function CRUD(model){
                 return;
             }
             else {
-                VersionModeli.findOne({firmaKodu : req.session.kullanici.firmaKodu}, function(dbVersionHatasi, bulunan){
-                    if(dbVersionHatasi){
-                        console.log(dbVersionHatasi);
-                        res.send({state : false, data : dbVersionHatasi});
-                        return;
-                    }
-                    var version = parseFloat(bulunan.mobilVersion);
-                    bulunan.mobilVersion = ++version;
-                    bulunan.save(function(dbHatasiKayit, kaydedilen){
-                        if(dbHatasiKayit){
-                            res.send({state : false, data : dbHatasiKayit});
-                            return;
-                        }
-                        res.send({state : true, data : eklenen});
-                    });
-                });
+                res.send({state : true, data : eklenen});
             }
         });
     });
@@ -89,22 +59,7 @@ function CRUD(model){
                 return;
             }
             else {
-                VersionModeli.findOne({firmaKodu : req.session.kullanici.firmaKodu}, function(dbVersionHatasi, bulunan){
-                    if(dbVersionHatasi){
-                        console.log(dbVersionHatasi);
-                        res.send({state : false, data : dbVersionHatasi});
-                        return;
-                    }
-                    var version = parseFloat(bulunan.mobilVersion);
-                    bulunan.mobilVersion = ++version;
-                    bulunan.save(function(dbHatasiKayit, kaydedilen){
-                        if(dbHatasiKayit){
-                            res.send({state : false, data : dbHatasiKayit});
-                            return;
-                        }
-                        res.send({state : true, data : "Tumu silindi."});
-                    });
-                });
+                res.send({state : true, data : "Tumu silindi."});
             }
         });
     });
@@ -117,22 +72,7 @@ function CRUD(model){
                 return;
             }
             else {
-                VersionModeli.findOne({firmaKodu : req.session.kullanici.firmaKodu}, function(dbVersionHatasi, bulunan){
-                    if(dbVersionHatasi){
-                        console.log(dbVersionHatasi);
-                        res.send({state : false, data : dbVersionHatasi});
-                        return;
-                    }
-                    var version = parseFloat(bulunan.mobilVersion);
-                    bulunan.mobilVersion = ++version;
-                    bulunan.save(function(dbHatasiKayit, kaydedilen){
-                        if(dbHatasiKayit){
-                            res.send({state : false, data : dbHatasiKayit});
-                            return;
-                        }
-                        res.send({state : true, data : "Veri silindi."});
-                    });
-                });
+                res.send({state : true, data : "Veri silindi."});
             }
         });
     });
@@ -158,22 +98,7 @@ function CRUD(model){
                 return;
             }
             else {
-                VersionModeli.findOne({firmaKodu : req.session.kullanici.firmaKodu}, function(dbVersionHatasi, bulunan){
-                    if(dbVersionHatasi){
-                        console.log(dbVersionHatasi);
-                        res.send({state : false, data : dbVersionHatasi});
-                        return;
-                    }
-                    var version = parseFloat(bulunan.mobilVersion);
-                    bulunan.mobilVersion = ++version;
-                    bulunan.save(function(dbHatasiKayit, kaydedilen){
-                        if(dbHatasiKayit){
-                            res.send({state : false, data : dbHatasiKayit});
-                            return;
-                        }
-                        res.send({state : true, data : etkilenenSatir});
-                    });
-                });
+                res.send({state : true, data : etkilenenSatir});
             }
         });
     });
@@ -188,22 +113,7 @@ function CRUD(model){
                 return;
             }
             else {
-                VersionModeli.findOne({firmaKodu : req.session.kullanici.firmaKodu}, function(dbVersionHatasi, bulunan){
-                    if(dbVersionHatasi){
-                        console.log(dbVersionHatasi);
-                        res.send({state : false, data : dbVersionHatasi});
-                        return;
-                    }
-                    var version = parseFloat(bulunan.mobilVersion);
-                    bulunan.mobilVersion = ++version;
-                    bulunan.save(function(dbHatasiKayit, kaydedilen){
-                        if(dbHatasiKayit){
-                            res.send({state : false, data : dbHatasiKayit});
-                            return;
-                        }
-                        res.send({state : true, data : etkilenenSatir});
-                    });
-                });
+                res.send({state : true, data : etkilenenSatir});
             }
         });
     });
@@ -219,25 +129,30 @@ function CRUD(model){
                 return;
             }
             else {
-                VersionModeli.findOne({firmaKodu : req.session.kullanici.firmaKodu}, function(dbVersionHatasi, bulunan){
-                    if(dbVersionHatasi){
-                        console.log(dbVersionHatasi);
-                        res.send({state : false, data : dbVersionHatasi});
-                        return;
-                    }
-                    var version = parseFloat(bulunan.mobilVersion);
-                    bulunan.mobilVersion = ++version;
-                    bulunan.save(function(dbHatasiKayit, kaydedilen){
-                        if(dbHatasiKayit){
-                            res.send({state : false, data : dbHatasiKayit});
-                            return;
-                        }
-                        res.send({state : true, data : etkilenenSatir});
-                    });
-                });
+                res.send({state : true, data : etkilenenSatir});
             }
         });
     });
+    
+    router.post('/guncelle', function(req, res) {
+        VersionModeli.findOne({firmaKodu : req.session.kullanici.firmaKodu}, function(dbVersionHatasi, bulunan){
+            if(dbVersionHatasi){
+                console.log(dbVersionHatasi);
+                res.send({state : false, data : dbVersionHatasi});
+                return;
+            }
+            var version = parseFloat(bulunan.mobilVersion);
+            bulunan.mobilVersion = ++version;
+            bulunan.save(function(dbHatasiKayit, kaydedilen){
+                if(dbHatasiKayit){
+                    res.send({state : false, data : dbHatasiKayit});
+                    return;
+                }
+
+            });
+        });
+    });
+    
     return router;
 }
 module.exports = CRUD;
