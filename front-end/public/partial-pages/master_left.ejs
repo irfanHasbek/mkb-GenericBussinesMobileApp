@@ -21,6 +21,11 @@
                     <i class="fa fa-home"></i> <span>Anasayfa</span>
                 </a>
             </li>
+            <li class="<%if(session.LeftMenuCategory == 'firma'){%>active<%}%>">
+                <a href="/html/firma_tanimi">
+                    <i class="fa fa-windows"></i> <span>Firma Tanimi</span>
+                </a>
+            </li>
             <li class="treeview <%if(session.LeftMenuCategory == 'kullanicilar'){%>active<%}%>">
                 <a href="#">
                     <i class="fa fa-users"></i>

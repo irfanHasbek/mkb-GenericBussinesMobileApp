@@ -1,6 +1,7 @@
 function clickHandlers(){
     $('#btnSubmitModal').on('click', function(){
         $('#uploadModal').modal('hide');
+        $.blockUI({ css: { backgroundColor: '#2980b9', color: '#fff' , padding:'30px', fontSize : '28px'} ,message : "Resimler Yükleniyor..."});
     });
     $("#btnReferansSubmit").on('click', function(e){
         if($('#inpFotografListesi').val() == "null"){
@@ -14,16 +15,24 @@ function clickHandlers(){
 function formHandlers(){
     $('#formResimYukle').ajaxForm(function(data){
         if(!data.state){
+            $.unblockUI();
             alertify.error('pdf yuklenemedi.');
             return;
         }
         var array = [];
+        //console.log(data);
         var resimListesi = data.fotografListesi.resimler;
-        for(var i = 0; i < resimListesi.length; i++){
-            var icerik = {link : resimListesi[i].path.replace("front-end/public/", data.host)};
+        if($.isArray(resimListesi)){
+            for(var i = 0; i < resimListesi.length; i++){
+                var icerik = {link : resimListesi[i].path.replace("front-end/public/", data.host)};
+                array.push(icerik);
+            }   
+        }else{
+            var icerik = {link : resimListesi.path.replace("front-end/public/", data.host)};
             array.push(icerik);
         }
         $('#inpFotografListesi').val(JSON.stringify(array));
+        $.unblockUI();
         alertify.success('Yukleme basarili.')
     });
     

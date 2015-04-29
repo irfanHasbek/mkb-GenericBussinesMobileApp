@@ -1,6 +1,7 @@
 function clickHandlers(){
     $('#btnSubmitModal').on('click', function(){
         $('#uploadModal').modal('hide');
+        $.blockUI({ css: { backgroundColor: '#2980b9', color: '#fff' , padding:'30px', fontSize : '28px'} ,message : "Resim Yükleniyor..."});
     });
     $("#btnReferansSubmit").on('click', function(e){
         if($('#inpFotografListesi').val() == "null"){
@@ -13,12 +14,14 @@ function clickHandlers(){
 function formHandlers(){
     $('#formResimYukle').ajaxForm(function(data){
         if(!data.state){
-            alertify.error('pdf yuklenemedi.');
+            $.unblockUI();
+            alertify.error('Resim yuklenemedi.');
             return;
         }
         var resimListesi = data.fotografListesi.resimler;
         //console.log(resimListesi);
         $('#inpFotografListesi').val(resimListesi.path.replace('front-end/public/',data.host));
+        $.unblockUI();
         alertify.success('Yukleme basarili.');
     });
     

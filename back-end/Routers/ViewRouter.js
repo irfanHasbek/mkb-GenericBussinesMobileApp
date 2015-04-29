@@ -12,6 +12,7 @@ var HaberlerModeli=require("../Modeller/HaberlerModeli");
 var EgitimTakvimiModeli=require("../Modeller/EgitimTakvimiModeli");
 var VideoModeli=require("../Modeller/VideoModeli");
 var VersionModeli = require('../Modeller/VersionModel');
+var FirmaModeli = require('../Modeller/FirmaModeli');
 
 function HTMLRouter(){
     var router = express.Router();
@@ -320,6 +321,20 @@ function HTMLRouter(){
                 return;
             }
             res.render('versiyon_guncelle', {layout : false, session : req.session, versiyon : bulunan});
+        });
+    });
+    
+    router.get('/firma_tanimi', function(req, res){
+        req.session.currentPage = '/html/firma_tanimi';
+        req.session.pageLabel = 'firma';
+        req.session.LeftMenuCategory = 'firma';
+        FirmaModeli.find({}, function(dbVersionHatasi, bulunan){
+            if(dbVersionHatasi){
+                console.log(dbVersionHatasi);
+                res.send({state : false, data : dbVersionHatasi});
+                return;
+            }
+            res.render('firma_tanimi', {layout : false, session : req.session, firmalar : bulunan});
         });
     });
     

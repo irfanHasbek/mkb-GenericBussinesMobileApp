@@ -5,8 +5,6 @@ var config = require('./config/development');
 var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var CRUDRouter = require('./back-end/Routers/Router');
-var multer = require('multer');
-var crypto = require('crypto');
 
 function createCrudRouter(app, modelPath, url){
     var Model = require(modelPath);
@@ -43,10 +41,18 @@ mongoose.connect(config.dbpath, function(err){
     // parse application/json
     app.use(bodyParser.json());
     
-    app.use(function(req, res, next){
-        //to do 
+    function sessionIzinler(req){
         var urlList = req.originalUrl.split('/');
-        if(req.session.giris || req.originalUrl == '/hesap/giris' || req.originalUrl == '/onyukleme/yoneticiekle' || req.originalUrl.indexOf('/listele') > 0 || req.originalUrl.indexOf('/ara') > 0){
+        console.log('url :' + req.originalUrl);
+        if(req.session.giris || req.originalUrl == '/hesap/giris' || req.originalUrl.indexOf('onyukleme') > 0 || req.originalUrl.indexOf('listele') > 0 || req.originalUrl.indexOf('ara') > 0 || req.originalUrl.indexOf('mail') > 0){
+            return true;   
+        }
+        else
+            return false
+    }
+    
+    app.use(function(req, res, next){
+        if(sessionIzinler(req)){
             console.log('sessionCheck is true');
             next();
         }else{
@@ -63,7 +69,13 @@ mongoose.connect(config.dbpath, function(err){
     assignRouter(app, './back-end/Routers/ViewRouter', '/html');
     //Versiyon router
     assignRouter(app, './back-end/Routers/VersiyonRouter', '/versiyon');
+    //yukleme router
+    assignRouter(app, './back-end/Routers/YuklemeRouter', '/yukleme');
+    //diger router
+    assignRouter(app, './back-end/Routers/DigerRouter', '/diger');
+    
     //Kullanici crud operasyon
+    createCrudRouter(app, './back-end/Modeller/FirmaModeli', '/firma_tanimi');
     createCrudRouter(app, './back-end/Modeller/KullaniciModeli', '/kullanici');
     createCrudRouter(app, './back-end/Modeller/RolTanimiModeli', '/rol_tanimi');
     createCrudRouter(app, './back-end/Modeller/GorevTanimiModeli', '/gorev_tanimi');
@@ -79,48 +91,6 @@ mongoose.connect(config.dbpath, function(err){
     
     app.get('/', function(req, res){
         res.render('giris'); 
-    });
-    
-    //pdf yukleme
-    app.post('/pdfyukle', multer({
-        dest: './front-end/public/yuklemeler/pdfler',
-        rename: function (fieldname, filename) {
-            var hash = crypto.createHash('sha1');
-            hash.setEncoding('hex');
-            hash.write(filename);
-            hash.end();
-            return hash.read();
-        },
-        onFileUploadComplete: function (file) {
-            //console.log(file.fieldname + ' uploaded to  ' + file.path);
-        },
-        onError: function(error, next) {
-            console.log("Error occurred while uploading the file!!");
-        }
-    }),function(req, res){
-        //req.protocol
-        res.send({state : true, dosyaAdi : req['files'].pdfler.originalname, dosyaLinki : config.host + '/yuklemeler/pdfler/' + req['files'].pdfler.name});
-    });
-    
-    //coklu resim yukleme
-    app.post('/cokluyukle', multer({
-        dest: './front-end/public/yuklemeler/medyalar',
-        rename: function (fieldname, filename) {
-            var hash = crypto.createHash('sha1');
-            hash.setEncoding('hex');
-            hash.write(filename);
-            hash.end();
-            return hash.read();
-        },
-        onFileUploadComplete: function (file) {
-            //console.log(file.fieldname + ' uploaded to  ' + file.path);
-        },
-        onError: function(error, next) {
-            console.log("Error occurred while uploading the file!!");
-        }
-    }),function(req, res){
-        //req.protocol
-        res.send({state : true, fotografListesi : req['files'], host : config.host});
     });
     
     if (!module.parent) {

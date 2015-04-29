@@ -26,9 +26,10 @@ function CRUD(model){
     });
     
     router.post('/ara', function(req, res) {
-        var aramaKriteri = JSON.stringify(req.body);
+        var aramaKriteri = req.body;
+        aramaKriteri.aktif = "true";
         console.log('//--------------//');
-        console.log('aramaKriteri : ' + aramaKriteri);
+        console.log('aramaKriteri : ' + JSON.stringify(aramaKriteri));
         console.log('req url : ' + req.originalUrl);
         model.find(aramaKriteri, function(dbHatasi, listelenen) {
             if(dbHatasi) {

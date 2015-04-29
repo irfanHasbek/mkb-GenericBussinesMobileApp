@@ -3,9 +3,9 @@ var KullaniciModeli = require('../Modeller/KullaniciModeli');
 var RolTanimiModeli = require('../Modeller/RolTanimiModeli');
 var VersionModeli = require('../Modeller/VersionModel');
 
-function yoneticiOlustur(){
+function yoneticiOlustur(firmaKodu){
     return {
-        firmaKodu : 'Yönetici',
+        firmaKodu : firmaKodu,
         isim : 'isim',
         soyisim : 'Soyisim',
         email : 'yonetici@yonetici.com',
@@ -39,7 +39,8 @@ function versionOlustur(firma){
 function OnyuklmemeRouter(){
     var router = express.Router();
     router.get('/yoneticiekle', function(req, res){
-        new KullaniciModeli(yoneticiOlustur()).save(function(dbHatasi, eklenen){
+        var firmaKodu = req.param('firmaKodu');
+        new KullaniciModeli(yoneticiOlustur(firmaKodu)).save(function(dbHatasi, eklenen){
             if(dbHatasi) {
                 res.send({state : false, data : dbHatasi});
                 return;

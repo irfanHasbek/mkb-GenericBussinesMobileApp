@@ -22,6 +22,43 @@ function CRUD(){
             }
         });
     });
+    
+    router.post('/ara', function(req, res) {
+        VersionModeli.find(req.body, function(dbHatasi, listelenen) {
+            if(dbHatasi) {
+                res.send({state : false, data : dbHatasi});
+                return;
+            }
+            else{
+                res.send({state : true, data : listelenen});
+            }
+        });
+    });
+    
+    router.post('/sil', function(req, res) {
+        VersionModeli.remove({ _id : req.body._id }, function(dbHatasi, listelenen) {
+            if(dbHatasi) {
+                res.send({state : false, data : dbHatasi});
+                return;
+            }
+            else{
+                res.send({state : true, data : listelenen});
+            }
+        });
+    });
+    
+    router.post('/ekle', function(req, res){  
+        var modelObject = new VersionModeli(req.body);
+        modelObject.save(function(dbHatasi, eklenen) {
+            if(dbHatasi) {
+                res.send({state : false, data : dbHatasi});
+                return;
+            }
+            else {
+                res.send({state : true, data : eklenen});
+            }
+        });
+    });
 
     router.post('/guncelle', function(req, res) {
         VersionModeli.findOne({firmaKodu : req.session.kullanici.firmaKodu}, function(dbVersionHatasi, bulunan){

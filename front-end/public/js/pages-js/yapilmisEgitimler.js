@@ -1,5 +1,6 @@
 function clickHandlers(){
     $('#btnSubmitModal').on('click', function(){
+        $.blockUI({ css: { backgroundColor: '#2980b9', color: '#fff' , padding:'30px', fontSize : '28px'} ,message : "Resim Yükleniyor..."});
         $('#uploadModal').modal('hide');
     });
 }
@@ -7,10 +8,12 @@ function clickHandlers(){
 function formHandlers(){
     $('#formPdfYukle').ajaxForm(function(data){
         if(!data.state){
+            $.unblockUI();
             alertify.error('fotograf yuklenemedi.');
             return;
         }
         $('#inpResimYukle').val(data.dosyaLinki);
+        $.unblcokUI();
         alertify.success('Yukleme basarili.')
     });
     
