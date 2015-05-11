@@ -33,7 +33,8 @@
                                         <table class="table table-bordered bayiler">
                                             <tr style="border-bottom:3px solid #3c8dbc;">
                                                 <th class="text-center" style="width: 40px">#</th>
-                                                <th>Bayi Adı</th>
+                                                <th>İsim Soyisim</th>
+                                                <th>Bölge Adı</th>
                                                 <th>E-mail</th>
                                                 <th>Telefon-1</th>
                                                 <th>Telefon-2</th>
@@ -46,7 +47,8 @@
                                                 <%for(var i=0;i<iletisimListesi.length;i++){%>
                                                     <tr id="<%=iletisimListesi[i]._id%>">
                                                     <td class="text-center"><%=i+1%></td>
-                                                    <td><%=iletisimListesi[i].bayiAdi%></td>
+                                                    <td><%=iletisimListesi[i].isimSoyisim%></td>
+                                                    <td><%=iletisimListesi[i].bolgeAdi%></td>
                                                     <td><%=iletisimListesi[i].email%></td>
                                                     <td><%=iletisimListesi[i].telefon1%></td>
                                                     <td><%=iletisimListesi[i].telefon2%></td>

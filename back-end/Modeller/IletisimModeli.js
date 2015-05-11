@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var IletisimModeli = new mongoose.Schema({
-    bayiAdi : String,
+    isimSoyisim : String,
+    bolgeAdi:String,
     email: String,
     telefon1: String,
     telefon2: String,
