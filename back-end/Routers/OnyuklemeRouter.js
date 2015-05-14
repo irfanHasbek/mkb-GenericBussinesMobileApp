@@ -21,11 +21,11 @@ function yoneticiOlustur(firmaKodu){
     }
 }
 
-function rolOlustur(){
+function rolOlustur(firmaKodu){
     return {
         rol : "Yönetici",
         degistiren: 'Sistem',
-        firmaKodu:'Yönetici'   
+        firmaKodu: firmaKodu 
     }
 }
 
@@ -52,7 +52,8 @@ function OnyuklmemeRouter(){
     });
     
     router.get('/rolekle', function(req, res){
-        new RolTanimiModeli(rolOlustur()).save(function(dbHatasi, eklenen){
+        var firmaKodu = req.param('firma');
+        new RolTanimiModeli(rolOlustur(firmaKodu)).save(function(dbHatasi, eklenen){
             if(dbHatasi) {
                 res.send({state : false, data : dbHatasi});
                 return;
